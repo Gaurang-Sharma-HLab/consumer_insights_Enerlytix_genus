@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MetricCardComponent, MetricCardData } from '../components/metric-card/metric-card.component';
-import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { BasePageLayoutComponent } from '../components/base-page-layout/base-page-layout.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, MetricCardComponent, SidebarComponent],
+  imports: [CommonModule, RouterModule, MetricCardComponent, BasePageLayoutComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

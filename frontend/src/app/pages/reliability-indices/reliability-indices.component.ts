@@ -5,7 +5,7 @@ import { ReliabilityIndicesDataService,
   ReliabilityIndicesSummary, ReliabilityIndicesHistorical, FeederReliabilityPerformance } from '../../services/reliability-indices-data.service';
 import { TopicSectionComponent } from '../../components/topic-section/topic-section.component';
 import { ThemeService } from '../../services/theme.service';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { BasePageLayoutComponent } from '../../components/base-page-layout/base-page-layout.component';
 import { SummaryTilesComponent } from '../../components/summary-tiles/summary-tiles.component';
 import { DataTableComponent, Column } from '../../components/data-table/data-table.component';
 import { StatusBadgeComponent } from '../../components/status-badge/status-badge.component';
@@ -19,7 +19,7 @@ import { ChartPlaceholderComponent } from '../../components/chart-placeholder/ch
     CommonModule,
     RouterModule,
     TopicSectionComponent,
-    SidebarComponent,
+    BasePageLayoutComponent,
     SummaryTilesComponent,
     DataTableComponent,
     StatusBadgeComponent,

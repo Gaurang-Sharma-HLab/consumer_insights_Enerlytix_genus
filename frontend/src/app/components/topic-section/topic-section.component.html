@@ -1,22 +1,24 @@
-<section class="mb-6 animate-fade-in">
+<section class="mb-6 animate-fade-in w-full">
   <button
     (click)="toggle()"
-    class="w-full flex items-center justify-between p-4 bg-card border border-theme rounded-xl hover:border-accent/50 transition-colors"
+    class="w-full flex items-center justify-between p-3 sm:p-4 bg-card border border-theme rounded-xl hover:border-accent/50 transition-colors gap-2 sm:gap-3 min-w-0"
     [style.background-color]="'var(--bg-card)'"
     [style.border-color]="'var(--border-color)'"
   >
-    <div class="flex items-center gap-3">
-      <span class="flex items-center justify-center w-8 h-8 rounded-lg text-white font-bold text-sm" [style.background-color]="'var(--accent-color)'">
+    <div class="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 overflow-hidden">
+      <span class="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white font-bold text-xs sm:text-sm flex-shrink-0" [style.background-color]="'var(--accent-color)'">
         {{ topicNumber }}
       </span>
-      <h2 class="text-lg font-semibold" [style.color]="'var(--text-primary)'">{{ title }}</h2>
+      <h2 class="text-sm sm:text-base lg:text-lg font-semibold truncate pr-2" [style.color]="'var(--text-primary)'">{{ title }}</h2>
     </div>
-    <svg *ngIf="isOpen" class="h-5 w-5" [style.color]="'var(--text-secondary)'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-    </svg>
-    <svg *ngIf="!isOpen" class="h-5 w-5" [style.color]="'var(--text-secondary)'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-    </svg>
+    <div class="flex-shrink-0">
+      <svg *ngIf="isOpen" class="h-4 w-4 sm:h-5 sm:w-5" [style.color]="'var(--text-secondary)'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+      </svg>
+      <svg *ngIf="!isOpen" class="h-4 w-4 sm:h-5 sm:w-5" [style.color]="'var(--text-secondary)'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </div>
   </button>
   
   <div [class]="'overflow-hidden transition-all duration-300 ' + (isOpen ? 'mt-4 max-h-[5000px] opacity-100' : 'max-h-0 opacity-0')">

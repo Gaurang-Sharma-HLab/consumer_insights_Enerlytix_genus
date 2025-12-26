@@ -1,75 +1,26 @@
-<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
-  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
-    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
-      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
-        <!-- Sidebar Component -->
-        <app-sidebar></app-sidebar>
-
-        <!-- Main Content Area -->
-        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
-          <!-- Main Header -->
-          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
-            <div class="flex items-start shrink-0 flex-nowrap relative">
-              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-secondary)'">Home</span>
-                </div>
-                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
-                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
-                </div>
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Themes</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
-              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
-                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
-                </a>
-                <div class="w-px h-6 shrink-0 bg-[#1d283a] relative"></div>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Content -->
-          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
-            <div class="container mx-auto px-6 py-8 w-full pb-8">
-              <div class="w-full max-w-2xl">
-                <h1 class="text-2xl font-semibold mb-6" [style.color]="'var(--text-primary)'">Theme Settings</h1>
-                <div class="bg-card border rounded-xl p-6" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                  <div class="flex items-center justify-between mb-4">
-                    <div>
-                      <h2 class="text-lg font-semibold mb-2" [style.color]="'var(--text-primary)'">Current Theme</h2>
-                      <p class="text-sm" [style.color]="'var(--text-secondary)'">Selected: {{ currentTheme === 'dark' ? 'Dark' : 'Light' }}</p>
-                    </div>
-                    <button 
-                      (click)="toggleTheme()"
-                      class="px-6 py-3 text-white font-medium rounded-lg transition-colors cursor-pointer"
-                      [style.background-color]="'var(--accent-color)'"
-                      [class.hover\:opacity-80]="true"
-                    >
-                      Switch to {{ currentTheme === 'dark' ? 'Light' : 'Dark' }} Theme
-                    </button>
-                  </div>
-                  <div class="mt-4 p-4 rounded-lg" [style.background-color]="'var(--bg-card-hover)'">
-                    <p class="text-sm" [style.color]="'var(--text-secondary)'">
-                      The theme will be applied across all pages and components. Your preference will be saved automatically.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<app-base-page-layout pageTitle="Themes" [showHeaderIcons]="true">
+  <div class="w-full max-w-2xl">
+    <h1 class="text-2xl font-semibold mb-6" [style.color]="'var(--text-primary)'">Theme Settings</h1>
+    <div class="bg-card border rounded-xl p-6" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-semibold mb-2" [style.color]="'var(--text-primary)'">Current Theme</h2>
+          <p class="text-sm" [style.color]="'var(--text-secondary)'">Selected: {{ currentTheme === 'dark' ? 'Dark' : 'Light' }}</p>
         </div>
+        <button 
+          (click)="toggleTheme()"
+          class="px-6 py-3 text-white font-medium rounded-lg transition-colors cursor-pointer"
+          [style.background-color]="'var(--accent-color)'"
+          [class.hover\:opacity-80]="true"
+        >
+          Switch to {{ currentTheme === 'dark' ? 'Light' : 'Dark' }} Theme
+        </button>
+      </div>
+      <div class="mt-4 p-4 rounded-lg" [style.background-color]="'var(--bg-card-hover)'">
+        <p class="text-sm" [style.color]="'var(--text-secondary)'">
+          The theme will be applied across all pages and components. Your preference will be saved automatically.
+        </p>
       </div>
     </div>
   </div>
-</div>
+</app-base-page-layout>

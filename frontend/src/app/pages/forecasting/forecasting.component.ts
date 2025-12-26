@@ -6,7 +6,7 @@ import { ForecastingDataService,
   ToDSummary, ToDInterval, ToDHistorical, ToDForecast, ToDSegment } from '../../services/forecasting-data.service';
 import { TopicSectionComponent } from '../../components/topic-section/topic-section.component';
 import { ThemeService } from '../../services/theme.service';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { BasePageLayoutComponent } from '../../components/base-page-layout/base-page-layout.component';
 import { SummaryTilesComponent } from '../../components/summary-tiles/summary-tiles.component';
 import { DataTableComponent, Column } from '../../components/data-table/data-table.component';
 import { InsightsCardComponent } from '../../components/insights-card/insights-card.component';
@@ -19,7 +19,7 @@ import { ChartPlaceholderComponent } from '../../components/chart-placeholder/ch
     CommonModule,
     RouterModule,
     TopicSectionComponent,
-    SidebarComponent,
+    BasePageLayoutComponent,
     SummaryTilesComponent,
     DataTableComponent,
     InsightsCardComponent,

@@ -1,179 +1,130 @@
-<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
-  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
-    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
-      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
-        <!-- Sidebar Component -->
-        <app-sidebar></app-sidebar>
-
-        <!-- Main Content Area -->
-        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
-          <!-- Main Header -->
-          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
-            <div class="flex items-start shrink-0 flex-nowrap relative">
-              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-secondary)'">Home</span>
-                </div>
-                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
-                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
-                </div>
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Energy Audit</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
-              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
-                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
-                </a>
-                <div class="w-px h-6 shrink-0 relative" [style.background-color]="'var(--border-color)'"></div>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Content Sections -->
-          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
-            <div class="container mx-auto px-6 py-8 w-full pb-8">
-              <!-- Topic 1: Feeder Loss Report – T&D & AT&C Loss Analysis -->
-              <app-topic-section title="Feeder Loss Report – T&D & AT&C Loss Analysis" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="feederLossSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Feeder-wise T&D and AT&C Loss Report</h3>
-                  <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                    <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Formulae:</h4>
-                    <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
-                      <li><strong>T&D Loss (%)</strong> = ((Feeder Input – DT Consumption) / Feeder Input) × 100</li>
-                      <li><strong>AT&C Loss (%)</strong> = (1 – (Billed Energy × Collection Efficiency) / Feeder Input) × 100</li>
-                      <li><strong>Collection Efficiency (%)</strong> = Amount Collected / Amount Billed × 100</li>
-                    </ul>
-                  </div>
-                  <app-data-table [data]="feederLossDetails" [columns]="feederLossDetailColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  '[X] feeders exhibit T&D losses beyond acceptable threshold of [Y%].',
-                  'Feeder [Name] has good technical performance but poor collection.',
-                  'Possible causes: meter tampering, bypassing, billing inefficiencies, theft.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 2: Feeder to Consumer Loss Report -->
-              <app-topic-section title="Feeder to Consumer Loss Report - (T&D, AT&C Losses, Billing & Collection Efficiency)" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="feederConsumerSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Feeder-Wise Detailed Report</h3>
-                  <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                    <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Formulae Used</h4>
-                    <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
-                      <li><strong>T&D Loss (%)</strong> = ((Feeder Input – Consumer Consumption) / Feeder Input) × 100</li>
-                      <li><strong>Billing Efficiency (%)</strong> = (Billed Units / Consumer Consumption) × 100</li>
-                      <li><strong>Collection Efficiency (%)</strong> = (Amount Collected / Amount Billed) × 100</li>
-                      <li><strong>AT&C Loss (%)</strong> = (1 – ((Billed Units × Collection Efficiency %) / Feeder Input)) × 100</li>
-                    </ul>
-                  </div>
-                  <app-data-table [data]="feederConsumerDetails" [columns]="feederConsumerDetailColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  'Feeder [FDR-XXX] has the highest T&D loss of [XX%] due to possible technical losses or unauthorized usage.',
-                  'Billing inefficiencies observed in [Feeder Names] – may be due to meter reading errors or unbilled consumers.',
-                  'Low collection efficiency noted in [Feeder/Area], impacting AT&C performance.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 3: LT Energy Loss Report – DT Level -->
-              <app-topic-section title="LT Energy Loss Report – DT Level (T&D and AT&C Loss Analysis)" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="ltEnergyLossSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 DT-Wise LT Energy Loss & Revenue Analysis</h3>
-                  <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                    <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Formulae:</h4>
-                    <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
-                      <li><strong>T&D Loss (%)</strong> = ((DT Output – LT Consumer Consumption) / DT Output) × 100</li>
-                      <li><strong>Billing Efficiency (%)</strong> = (Billed Units / LT Consumer Consumption) × 100</li>
-                      <li><strong>Collection Efficiency (%)</strong> = (Amount Collected / Amount Billed) × 100</li>
-                      <li><strong>AT&C Loss (%)</strong> = (1 – ((Billed Units × Collection Efficiency) / DT Output)) × 100</li>
-                    </ul>
-                  </div>
-                  <app-data-table [data]="ltEnergyLossDTs" [columns]="ltEnergyLossDTColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  '[X] DTs are showing T&D losses >10% indicating technical losses or unmetered load.',
-                  'DTs like [DT-001, DT-003] are flagged for high AT&C losses, primarily due to poor collection.',
-                  'Good performance observed in DTs under [Zone/Subdivision] with <5% total losses.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 4: Feeder & DT Performance Evaluation Report -->
-              <app-topic-section title="Feeder & DT Performance Evaluation Report - Top 10 Best and Worst Performing Feeders and DTs" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Performance Parameters Considered (Configurable Rules)</h3>
-                  <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                    <p class="text-sm mb-2" [style.color]="'var(--text-secondary)'">These weightages can be modified based on DISCOM policy.</p>
-                  </div>
-                  <app-data-table [data]="getPerformanceParametersWithIds()" [columns]="performanceParameterColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.2 Top 10 Best Performing Feeders (Based on Composite Score)</h3>
-                  <app-data-table [data]="bestFeeders" [columns]="bestWorstFeederColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.3 Bottom 10 Worst Performing Feeders</h3>
-                  <app-data-table [data]="worstFeeders" [columns]="bestWorstFeederColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.4 Top 10 Best Performing DTs</h3>
-                  <app-data-table [data]="bestDTs" [columns]="bestWorstDTColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.5 Bottom 10 Worst Performing DTs</h3>
-                  <app-data-table [data]="worstDTs" [columns]="bestWorstDTColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  'High-performing feeders are typically in urban zones with better infrastructure and consumer compliance.',
-                  'Bottom performers often show signs of theft, overload, or poor consumer behavior.',
-                  'DT-level monitoring is essential for pinpointing localized losses.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 5: Summary Report: High-Risk & Underperforming Network Assets -->
-              <app-topic-section title="Summary Report: High-Risk & Underperforming Network Assets" [topicNumber]="5" (opened)="onTopicSectionOpened($event)">
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.1 Top 10 High Loss DTs and Feeders (T&D or AT&C)</h3>
-                  <app-data-table [data]="highLossAssets" [columns]="highLossAssetColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.2 Top 10 Overloaded DTs and Feeders</h3>
-                  <app-data-table [data]="overloadedAssets" [columns]="overloadedAssetColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.3 Feeders / DTs with Most Outages (Count & Duration)</h3>
-                  <app-data-table [data]="outageAssets" [columns]="outageAssetColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.4 Feeders with Most Power Quality Issues</h3>
-                  <app-data-table [data]="powerQualityIssueAssets" [columns]="powerQualityIssueAssetColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.5 DTs with High Failure Rate</h3>
-                  <app-data-table [data]="highFailureRateDTs" [columns]="highFailureRateDTColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  'Overloaded DTs and Feeders are strongly correlated with high failure rates and power quality issues.',
-                  'AT&C loss zones often coincide with frequent outages and high complaint density.',
-                  'Some older DTs (>10 years) show a rising trend in failures and should be flagged for proactive replacement.'
-                ]"></app-insights-card>
-              </app-topic-section>
-            </div>
-          </div>
-        </div>
+<app-base-page-layout pageTitle="Energy Audit">
+  <!-- Topic 1: Feeder Loss Report – T&D & AT&C Loss Analysis -->
+  <app-topic-section title="Feeder Loss Report – T&D & AT&C Loss Analysis" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="feederLossSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Feeder-wise T&D and AT&C Loss Report</h3>
+      <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+        <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Formulae:</h4>
+        <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
+          <li><strong>T&D Loss (%)</strong> = ((Feeder Input – DT Consumption) / Feeder Input) × 100</li>
+          <li><strong>AT&C Loss (%)</strong> = (1 – (Billed Energy × Collection Efficiency) / Feeder Input) × 100</li>
+          <li><strong>Collection Efficiency (%)</strong> = Amount Collected / Amount Billed × 100</li>
+        </ul>
       </div>
+      <app-data-table [data]="feederLossDetails" [columns]="feederLossDetailColumns"></app-data-table>
     </div>
-  </div>
-</div>
+    <app-insights-card [insights]="[
+      '[X] feeders exhibit T&D losses beyond acceptable threshold of [Y%].',
+      'Feeder [Name] has good technical performance but poor collection.',
+      'Possible causes: meter tampering, bypassing, billing inefficiencies, theft.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 2: Feeder to Consumer Loss Report -->
+  <app-topic-section title="Feeder to Consumer Loss Report - (T&D, AT&C Losses, Billing & Collection Efficiency)" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="feederConsumerSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Feeder-Wise Detailed Report</h3>
+      <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+        <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Formulae Used</h4>
+        <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
+          <li><strong>T&D Loss (%)</strong> = ((Feeder Input – Consumer Consumption) / Feeder Input) × 100</li>
+          <li><strong>Billing Efficiency (%)</strong> = (Billed Units / Consumer Consumption) × 100</li>
+          <li><strong>Collection Efficiency (%)</strong> = (Amount Collected / Amount Billed) × 100</li>
+          <li><strong>AT&C Loss (%)</strong> = (1 – ((Billed Units × Collection Efficiency %) / Feeder Input)) × 100</li>
+        </ul>
+      </div>
+      <app-data-table [data]="feederConsumerDetails" [columns]="feederConsumerDetailColumns"></app-data-table>
+    </div>
+    <app-insights-card [insights]="[
+      'Feeder [FDR-XXX] has the highest T&D loss of [XX%] due to possible technical losses or unauthorized usage.',
+      'Billing inefficiencies observed in [Feeder Names] – may be due to meter reading errors or unbilled consumers.',
+      'Low collection efficiency noted in [Feeder/Area], impacting AT&C performance.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 3: LT Energy Loss Report – DT Level -->
+  <app-topic-section title="LT Energy Loss Report – DT Level (T&D and AT&C Loss Analysis)" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="ltEnergyLossSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 DT-Wise LT Energy Loss & Revenue Analysis</h3>
+      <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+        <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Formulae:</h4>
+        <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
+          <li><strong>T&D Loss (%)</strong> = ((DT Output – LT Consumer Consumption) / DT Output) × 100</li>
+          <li><strong>Billing Efficiency (%)</strong> = (Billed Units / LT Consumer Consumption) × 100</li>
+          <li><strong>Collection Efficiency (%)</strong> = (Amount Collected / Amount Billed) × 100</li>
+          <li><strong>AT&C Loss (%)</strong> = (1 – ((Billed Units × Collection Efficiency) / DT Output)) × 100</li>
+        </ul>
+      </div>
+      <app-data-table [data]="ltEnergyLossDTs" [columns]="ltEnergyLossDTColumns"></app-data-table>
+    </div>
+    <app-insights-card [insights]="[
+      '[X] DTs are showing T&D losses >10% indicating technical losses or unmetered load.',
+      'DTs like [DT-001, DT-003] are flagged for high AT&C losses, primarily due to poor collection.',
+      'Good performance observed in DTs under [Zone/Subdivision] with <5% total losses.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 4: Feeder & DT Performance Evaluation Report -->
+  <app-topic-section title="Feeder & DT Performance Evaluation Report - Top 10 Best and Worst Performing Feeders and DTs" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Performance Parameters Considered (Configurable Rules)</h3>
+      <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+        <p class="text-sm mb-2" [style.color]="'var(--text-secondary)'">These weightages can be modified based on DISCOM policy.</p>
+      </div>
+      <app-data-table [data]="getPerformanceParametersWithIds()" [columns]="performanceParameterColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.2 Top 10 Best Performing Feeders (Based on Composite Score)</h3>
+      <app-data-table [data]="bestFeeders" [columns]="bestWorstFeederColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.3 Bottom 10 Worst Performing Feeders</h3>
+      <app-data-table [data]="worstFeeders" [columns]="bestWorstFeederColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.4 Top 10 Best Performing DTs</h3>
+      <app-data-table [data]="bestDTs" [columns]="bestWorstDTColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.5 Bottom 10 Worst Performing DTs</h3>
+      <app-data-table [data]="worstDTs" [columns]="bestWorstDTColumns"></app-data-table>
+    </div>
+    <app-insights-card [insights]="[
+      'High-performing feeders are typically in urban zones with better infrastructure and consumer compliance.',
+      'Bottom performers often show signs of theft, overload, or poor consumer behavior.',
+      'DT-level monitoring is essential for pinpointing localized losses.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 5: Summary Report: High-Risk & Underperforming Network Assets -->
+  <app-topic-section title="Summary Report: High-Risk & Underperforming Network Assets" [topicNumber]="5" (opened)="onTopicSectionOpened($event)">
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.1 Top 10 High Loss DTs and Feeders (T&D or AT&C)</h3>
+      <app-data-table [data]="highLossAssets" [columns]="highLossAssetColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.2 Top 10 Overloaded DTs and Feeders</h3>
+      <app-data-table [data]="overloadedAssets" [columns]="overloadedAssetColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.3 Feeders / DTs with Most Outages (Count & Duration)</h3>
+      <app-data-table [data]="outageAssets" [columns]="outageAssetColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.4 Feeders with Most Power Quality Issues</h3>
+      <app-data-table [data]="powerQualityIssueAssets" [columns]="powerQualityIssueAssetColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.5 DTs with High Failure Rate</h3>
+      <app-data-table [data]="highFailureRateDTs" [columns]="highFailureRateDTColumns"></app-data-table>
+    </div>
+    <app-insights-card [insights]="[
+      'Overloaded DTs and Feeders are strongly correlated with high failure rates and power quality issues.',
+      'AT&C loss zones often coincide with frequent outages and high complaint density.',
+      'Some older DTs (>10 years) show a rising trend in failures and should be flagged for proactive replacement.'
+    ]"></app-insights-card>
+  </app-topic-section>
+</app-base-page-layout>

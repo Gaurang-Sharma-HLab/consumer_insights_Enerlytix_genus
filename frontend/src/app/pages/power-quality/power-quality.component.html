@@ -1,150 +1,101 @@
-<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
-  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
-    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
-      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
-        <!-- Sidebar Component -->
-        <app-sidebar></app-sidebar>
+<app-base-page-layout pageTitle="Power Quality">
+  <!-- Topic 1: Outage Monitoring & Analysis Report -->
+  <app-topic-section title="Outage Monitoring & Analysis Report: Consumer-Level Frequent Outage Monitoring & Forecasting" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="outageSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Outage Interval Definitions (Configurable)</h3>
+      <app-data-table [data]="getOutageIntervalsWithIds()" [columns]="outageIntervalColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.2 Historical Outage Trends (Last 7 Days)</h3>
+      <app-data-table [data]="outageHistorical" [columns]="outageHistoricalColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.3 Forecasted Outage Trends (Next Month)</h3>
+      <app-data-table [data]="outageForecast" [columns]="outageForecastColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.4 Consumer Segment-wise Outage Impact</h3>
+      <app-data-table [data]="getOutageSegmentsWithIds()" [columns]="outageSegmentColumns"></app-data-table>
+    </div>
+  </app-topic-section>
 
-        <!-- Main Content Area -->
-        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
-          <!-- Main Header -->
-          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
-            <div class="flex items-start shrink-0 flex-nowrap relative">
-              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-secondary)'">Home</span>
-                </div>
-                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
-                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
-                </div>
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Power Quality</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
-              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
-                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
-                </a>
-                <div class="w-px h-6 shrink-0 relative" [style.background-color]="'var(--border-color)'"></div>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-              </div>
-            </div>
-          </div>
+  <!-- Topic 2: Voltage Deviation Index (VDI) Analysis & Forecasting Report -->
+  <app-topic-section title="Voltage Deviation Index (VDI) Analysis & Forecasting Report" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="voltageDeviationSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Voltage Monitoring Interval Definitions (Configurable)</h3>
+      <app-data-table [data]="getVoltageIntervalsWithIds()" [columns]="voltageIntervalColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.2 Historical Voltage Deviation Trends (Last 7/30 Days)</h3>
+      <app-data-table [data]="voltageHistorical" [columns]="voltageHistoricalColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.3 Forecasted Voltage Deviation Risk (Next Month)</h3>
+      <app-data-table [data]="voltageForecast" [columns]="voltageForecastColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.4 Voltage Deviation by Consumer Segment</h3>
+      <app-data-table [data]="getVoltageSegmentsWithIds()" [columns]="voltageSegmentColumns"></app-data-table>
+    </div>
+  </app-topic-section>
 
-          <!-- Main Content Sections -->
-          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
-            <div class="container mx-auto px-6 py-8 w-full pb-8">
-              <!-- Topic 1: Outage Monitoring & Analysis Report -->
-              <app-topic-section title="Outage Monitoring & Analysis Report: Consumer-Level Frequent Outage Monitoring & Forecasting" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="outageSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Outage Interval Definitions (Configurable)</h3>
-                  <app-data-table [data]="getOutageIntervalsWithIds()" [columns]="outageIntervalColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.2 Historical Outage Trends (Last 7 Days)</h3>
-                  <app-data-table [data]="outageHistorical" [columns]="outageHistoricalColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.3 Forecasted Outage Trends (Next Month)</h3>
-                  <app-data-table [data]="outageForecast" [columns]="outageForecastColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.4 Consumer Segment-wise Outage Impact</h3>
-                  <app-data-table [data]="getOutageSegmentsWithIds()" [columns]="outageSegmentColumns"></app-data-table>
-                </div>
-              </app-topic-section>
-
-              <!-- Topic 2: Voltage Deviation Index (VDI) Analysis & Forecasting Report -->
-              <app-topic-section title="Voltage Deviation Index (VDI) Analysis & Forecasting Report" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="voltageDeviationSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Voltage Monitoring Interval Definitions (Configurable)</h3>
-                  <app-data-table [data]="getVoltageIntervalsWithIds()" [columns]="voltageIntervalColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.2 Historical Voltage Deviation Trends (Last 7/30 Days)</h3>
-                  <app-data-table [data]="voltageHistorical" [columns]="voltageHistoricalColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.3 Forecasted Voltage Deviation Risk (Next Month)</h3>
-                  <app-data-table [data]="voltageForecast" [columns]="voltageForecastColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.4 Voltage Deviation by Consumer Segment</h3>
-                  <app-data-table [data]="getVoltageSegmentsWithIds()" [columns]="voltageSegmentColumns"></app-data-table>
-                </div>
-              </app-topic-section>
-
-              <!-- Topic 3: Frequency Deviation Index (F-DI) Analysis & Forecasting Report -->
-              <app-topic-section title="Frequency Deviation Index (F-DI) Analysis & Forecasting Report" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="frequencyDeviationSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 Data Selection Parameters</h3>
-                  <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                    <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
-                      <li><strong [style.color]="'var(--text-primary)'">From & To Date</strong> – [DD-MM-YYYY to DD-MM-YYYY]</li>
-                      <li><strong [style.color]="'var(--text-primary)'">Circle / Division / Sub-division</strong> – [Specify here]</li>
-                      <li><strong [style.color]="'var(--text-primary)'">Radio Button Selection</strong> – Feeder / DT</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.2 Frequency Deviation Blocks (Configurable)</h3>
-                  <app-data-table [data]="getFrequencyBlocksWithIds()" [columns]="frequencyBlockColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.3 Historical Frequency Deviation Trends (Last 7/30 Days)</h3>
-                  <app-data-table [data]="frequencyHistorical" [columns]="frequencyHistoricalColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.4 Forecasted Frequency Performance (Next Month)</h3>
-                  <app-data-table [data]="frequencyForecast" [columns]="frequencyForecastColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.5 Equipment Type-wise Frequency Deviation Analysis</h3>
-                  <app-data-table [data]="getFrequencyEquipmentTypesWithIds()" [columns]="frequencyEquipmentTypeColumns"></app-data-table>
-                </div>
-              </app-topic-section>
-
-              <!-- Topic 4: Low Power Factor Analysis & Forecasting Report– System Meters (DT/Feeder) -->
-              <app-topic-section title="Low Power Factor Analysis & Forecasting Report– System Meters (DT/Feeder)" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="systemPowerFactorSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Analysis Parameters (Configurable)</h3>
-                  <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-                    <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
-                      <li><strong [style.color]="'var(--text-primary)'">From & To Date:</strong> [DD-MM-YYYY – DD-MM-YYYY]</li>
-                      <li><strong [style.color]="'var(--text-primary)'">Geographical Filters:</strong> Circle / Division / Sub-division</li>
-                      <li><strong [style.color]="'var(--text-primary)'">Selection Mode:</strong> Radio button – Feeder / DT</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.2 Historical Low PF Trends (Last 7 Days)</h3>
-                  <app-data-table [data]="systemPowerFactorHistorical" [columns]="systemPowerFactorHistoricalColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.3 Forecasted Risk (Next Month)</h3>
-                  <app-data-table [data]="systemPowerFactorForecast" [columns]="systemPowerFactorForecastColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.4 Consumer Segment-wise PF Issues</h3>
-                  <app-data-table [data]="getSystemPowerFactorSegmentsWithIds()" [columns]="systemPowerFactorSegmentColumns"></app-data-table>
-                </div>
-              </app-topic-section>
-            </div>
-          </div>
-        </div>
+  <!-- Topic 3: Frequency Deviation Index (F-DI) Analysis & Forecasting Report -->
+  <app-topic-section title="Frequency Deviation Index (F-DI) Analysis & Forecasting Report" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="frequencyDeviationSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 Data Selection Parameters</h3>
+      <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+        <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
+          <li><strong [style.color]="'var(--text-primary)'">From & To Date</strong> – [DD-MM-YYYY to DD-MM-YYYY]</li>
+          <li><strong [style.color]="'var(--text-primary)'">Circle / Division / Sub-division</strong> – [Specify here]</li>
+          <li><strong [style.color]="'var(--text-primary)'">Radio Button Selection</strong> – Feeder / DT</li>
+        </ul>
       </div>
     </div>
-  </div>
-</div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.2 Frequency Deviation Blocks (Configurable)</h3>
+      <app-data-table [data]="getFrequencyBlocksWithIds()" [columns]="frequencyBlockColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.3 Historical Frequency Deviation Trends (Last 7/30 Days)</h3>
+      <app-data-table [data]="frequencyHistorical" [columns]="frequencyHistoricalColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.4 Forecasted Frequency Performance (Next Month)</h3>
+      <app-data-table [data]="frequencyForecast" [columns]="frequencyForecastColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.5 Equipment Type-wise Frequency Deviation Analysis</h3>
+      <app-data-table [data]="getFrequencyEquipmentTypesWithIds()" [columns]="frequencyEquipmentTypeColumns"></app-data-table>
+    </div>
+  </app-topic-section>
+
+  <!-- Topic 4: Low Power Factor Analysis & Forecasting Report– System Meters (DT/Feeder) -->
+  <app-topic-section title="Low Power Factor Analysis & Forecasting Report– System Meters (DT/Feeder)" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="systemPowerFactorSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Analysis Parameters (Configurable)</h3>
+      <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+        <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
+          <li><strong [style.color]="'var(--text-primary)'">From & To Date:</strong> [DD-MM-YYYY – DD-MM-YYYY]</li>
+          <li><strong [style.color]="'var(--text-primary)'">Geographical Filters:</strong> Circle / Division / Sub-division</li>
+          <li><strong [style.color]="'var(--text-primary)'">Selection Mode:</strong> Radio button – Feeder / DT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.2 Historical Low PF Trends (Last 7 Days)</h3>
+      <app-data-table [data]="systemPowerFactorHistorical" [columns]="systemPowerFactorHistoricalColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.3 Forecasted Risk (Next Month)</h3>
+      <app-data-table [data]="systemPowerFactorForecast" [columns]="systemPowerFactorForecastColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.4 Consumer Segment-wise PF Issues</h3>
+      <app-data-table [data]="getSystemPowerFactorSegmentsWithIds()" [columns]="systemPowerFactorSegmentColumns"></app-data-table>
+    </div>
+  </app-topic-section>
+</app-base-page-layout>

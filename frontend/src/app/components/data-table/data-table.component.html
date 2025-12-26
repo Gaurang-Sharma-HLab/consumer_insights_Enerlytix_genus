@@ -1,5 +1,6 @@
-<div [class]="'overflow-x-auto rounded-xl border bg-card ' + className" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
-  <table class="w-full text-sm">
+<div [class]="'table-wrapper rounded-xl border bg-card ' + className" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm" style="min-width: 100%;">
     <thead>
       <tr [style.border-bottom-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card-hover)'">
         <th
@@ -35,4 +36,5 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>

@@ -1,176 +1,127 @@
-<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
-  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
-    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
-      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
-        <!-- Sidebar Component -->
-        <app-sidebar></app-sidebar>
-
-        <!-- Main Content Area -->
-        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
-          <!-- Main Header -->
-          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
-            <div class="flex items-start shrink-0 flex-nowrap relative">
-              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap">Home</span>
-                </div>
-                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
-                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
-                </div>
-                <div class="flex flex-col items-start flex-nowrap relative">
-                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#f8fafc] relative text-left whitespace-nowrap">Consumer Data Analysis</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
-              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
-                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
-                </a>
-                <div class="w-px h-6 shrink-0 bg-[#1d283a] relative"></div>
-                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
-                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Content Sections -->
-          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
-            <div class="container mx-auto px-6 py-8 w-full pb-8">
-              <!-- Topic 1: Abnormal Consumption Pattern -->
-              <app-topic-section title="Abnormal Consumption Pattern" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="abnormalConsumptionSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 High Consumption Cases</h3>
-                  <app-data-table [data]="highConsumptionCases" [columns]="highConsumptionColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.2 Low Consumption / Zero Units Cases</h3>
-                  <app-data-table [data]="lowConsumptionCases" [columns]="lowConsumptionColumns"></app-data-table>
-                </div>
-                <div class="grid gap-6 lg:grid-cols-2">
-                  <app-chart-placeholder [title]="'Top 10 Consumers – Sudden Spike'" [type]="'bar'" [data]="spikeChartData"></app-chart-placeholder>
-                  <app-chart-placeholder [title]="'Top 10 Consumers – Sudden Drop'" [type]="'bar'" [data]="dropChartData"></app-chart-placeholder>
-                </div>
-              </app-topic-section>
-
-              <!-- Topic 2: Zero Consumption Analysis -->
-              <app-topic-section title="Zero Consumption Analysis Report" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="zeroConsumptionMetrics"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Categorized Breakdown</h3>
-                  <app-data-table [data]="getZeroConsumptionCategoriesWithIds()" [columns]="zeroConsumptionCategoryColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.2 Sample Consumer-wise Data</h3>
-                  <app-data-table [data]="zeroConsumptionConsumers" [columns]="zeroConsumptionConsumerColumns"></app-data-table>
-                </div>
-                <div class="grid gap-6 lg:grid-cols-3">
-                  <app-chart-placeholder [title]="'Root Cause Distribution'" [type]="'pie'" [data]="zeroConsumptionCategories"></app-chart-placeholder>
-                  <app-chart-placeholder [title]="'Zero Consumption by Circle'" [type]="'bar'" [data]="circleZeroConsumptionData"></app-chart-placeholder>
-                  <app-chart-placeholder [title]="'Zero Consumption Trend (Monthly)'" [type]="'line'" [data]="zeroConsumptionTrendData"></app-chart-placeholder>
-                </div>
-                <app-insights-card [insights]="[
-                  '25% of zero consumption cases are from non-communicating meters.',
-                  'Repeated cases from North subdivision indicating possible field process issue.',
-                  '12% cases have meter energy data but not billed – MDMS to UBS sync issue suspected.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 3: Consumption Drop Analysis -->
-              <app-topic-section title="Consumption Drop Analysis Report – Post Smart Meter Installation" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
-                <app-data-table [data]="getConsumptionDropSummaryWithIds()" [columns]="consumptionDropSummaryColumns"></app-data-table>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 Consumer-Wise Consumption Comparison</h3>
-                  <app-data-table [data]="consumptionDropConsumers" [columns]="consumptionDropConsumerColumns"></app-data-table>
-                </div>
-              </app-topic-section>
-
-              <!-- Topic 4: Low Consumption Trend -->
-              <app-topic-section title="Low Consumption Trend Report" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
-                <app-data-table [data]="getLowConsumptionSummaryWithIds()" [columns]="lowConsumptionSummaryColumns"></app-data-table>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Consumer-Wise Analysis</h3>
-                  <app-data-table [data]="lowConsumptionConsumers" [columns]="lowConsumptionConsumerColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  'Majority of the drops observed in LT Commercial / HT Industrial category.',
-                  'Possible causes: Consumer energy optimization, Meter under-recording, Load shifting or seasonal impact.',
-                  'Total of 567 consumers show more than 30% drop YoY.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 5: Consumption Lower Than Expected -->
-              <app-topic-section title="Consumers with Consumption Lower Than Expected Pattern" [topicNumber]="5" (opened)="onTopicSectionOpened($event)">
-                <app-data-table [data]="lowerThanExpectedConsumers" [columns]="lowerThanExpectedColumns"></app-data-table>
-                <app-insights-card [insights]="[
-                  'AMISP to Validate: Check for potential metering issues or communication gaps.',
-                  'Field Team to Investigate: Physical site inspection where deviation >25%.',
-                  'Consumer Notification: Alert to be issued in case of recurring anomalies.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 6: Consumer Profiling & Bucketing -->
-              <app-topic-section title="Consumer Consumption Profiling & Bucketing Report" [topicNumber]="6" (opened)="onTopicSectionOpened($event)">
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.1 Bucketing Logic</h3>
-                  <app-bucket-logic-table [data]="bucketLogic"></app-bucket-logic-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.2 Consumer-Wise Profiling</h3>
-                  <app-data-table [data]="consumerProfiles" [columns]="consumerProfileColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.3 Summary by Category & Bucket</h3>
-                  <app-bucket-summary-table [data]="bucketSummary"></app-bucket-summary-table>
-                </div>
-                <app-insights-card [insights]="[
-                  'Prioritize High Risk consumers for inspection and automated alerts.',
-                  'Issue load enhancement notices where MD consistently exceeds SL.',
-                  'Investigate zero use consumers with sanctioned load >1 kW.',
-                  'Update risk categorization monthly or as per data availability.'
-                ]"></app-insights-card>
-              </app-topic-section>
-
-              <!-- Topic 7: Communication Gap & Ageing Analytics -->
-              <app-topic-section title="Communication Gap & Ageing Analytics Report" [topicNumber]="7" (opened)="onTopicSectionOpened($event)">
-                <app-summary-tiles [data]="communicationGapSummary"></app-summary-tiles>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.1 Communication Failure Ageing Category Summary</h3>
-                  <app-data-table [data]="getCommunicationAgeingCategoriesWithIds()" [columns]="communicationAgeingCategoryColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.2 Circle / Division Level Breakdown</h3>
-                  <app-data-table [data]="communicationCircleBreakdown" [columns]="communicationCircleBreakdownColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.3 Sample Meter-Level Detail (Extract)</h3>
-                  <app-data-table [data]="communicationMeterDetails" [columns]="communicationMeterDetailColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.4 Root Cause Classification</h3>
-                  <app-data-table [data]="getCommunicationRootCausesWithIds()" [columns]="communicationRootCauseColumns"></app-data-table>
-                </div>
-                <div class="space-y-4">
-                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.5 Action Tracker – For AMISP</h3>
-                  <app-data-table [data]="communicationActionTracker" [columns]="communicationActionTrackerColumns"></app-data-table>
-                </div>
-                <app-insights-card [insights]="[
-                  '38% of communication failures are due to RF coverage issues - infrastructure upgrade needed.',
-                  'Meters with >30 days ageing require immediate field intervention.',
-                  '234 meters never communicated since installation - MDM configuration review required.',
-                  'Prioritize action tracker items with deadlines approaching within 7 days.'
-                ]"></app-insights-card>
-              </app-topic-section>
-            </div>
-          </div>
-        </div>
-      </div>
+<app-base-page-layout pageTitle="Consumer Data Analysis">
+  <!-- Topic 1: Abnormal Consumption Pattern -->
+  <app-topic-section title="Abnormal Consumption Pattern" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="abnormalConsumptionSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 High Consumption Cases</h3>
+      <app-data-table [data]="highConsumptionCases" [columns]="highConsumptionColumns"></app-data-table>
     </div>
-  </div>
-</div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.2 Low Consumption / Zero Units Cases</h3>
+      <app-data-table [data]="lowConsumptionCases" [columns]="lowConsumptionColumns"></app-data-table>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-2">
+      <app-chart-placeholder [title]="'Top 10 Consumers – Sudden Spike'" [type]="'bar'" [data]="spikeChartData"></app-chart-placeholder>
+      <app-chart-placeholder [title]="'Top 10 Consumers – Sudden Drop'" [type]="'bar'" [data]="dropChartData"></app-chart-placeholder>
+    </div>
+  </app-topic-section>
+
+  <!-- Topic 2: Zero Consumption Analysis -->
+  <app-topic-section title="Zero Consumption Analysis Report" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="zeroConsumptionMetrics"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Categorized Breakdown</h3>
+      <app-data-table [data]="getZeroConsumptionCategoriesWithIds()" [columns]="zeroConsumptionCategoryColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.2 Sample Consumer-wise Data</h3>
+      <app-data-table [data]="zeroConsumptionConsumers" [columns]="zeroConsumptionConsumerColumns"></app-data-table>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-3">
+      <app-chart-placeholder [title]="'Root Cause Distribution'" [type]="'pie'" [data]="zeroConsumptionCategories"></app-chart-placeholder>
+      <app-chart-placeholder [title]="'Zero Consumption by Circle'" [type]="'bar'" [data]="circleZeroConsumptionData"></app-chart-placeholder>
+      <app-chart-placeholder [title]="'Zero Consumption Trend (Monthly)'" [type]="'line'" [data]="zeroConsumptionTrendData"></app-chart-placeholder>
+    </div>
+    <app-insights-card [insights]="[
+      '25% of zero consumption cases are from non-communicating meters.',
+      'Repeated cases from North subdivision indicating possible field process issue.',
+      '12% cases have meter energy data but not billed – MDMS to UBS sync issue suspected.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 3: Consumption Drop Analysis -->
+  <app-topic-section title="Consumption Drop Analysis Report – Post Smart Meter Installation" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
+    <app-data-table [data]="getConsumptionDropSummaryWithIds()" [columns]="consumptionDropSummaryColumns"></app-data-table>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 Consumer-Wise Consumption Comparison</h3>
+      <app-data-table [data]="consumptionDropConsumers" [columns]="consumptionDropConsumerColumns"></app-data-table>
+    </div>
+  </app-topic-section>
+
+  <!-- Topic 4: Low Consumption Trend -->
+  <app-topic-section title="Low Consumption Trend Report" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
+    <app-data-table [data]="getLowConsumptionSummaryWithIds()" [columns]="lowConsumptionSummaryColumns"></app-data-table>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Consumer-Wise Analysis</h3>
+      <app-data-table [data]="lowConsumptionConsumers" [columns]="lowConsumptionConsumerColumns"></app-data-table>
+    </div>
+    <app-insights-card [insights]="[
+      'Majority of the drops observed in LT Commercial / HT Industrial category.',
+      'Possible causes: Consumer energy optimization, Meter under-recording, Load shifting or seasonal impact.',
+      'Total of 567 consumers show more than 30% drop YoY.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 5: Consumption Lower Than Expected -->
+  <app-topic-section title="Consumers with Consumption Lower Than Expected Pattern" [topicNumber]="5" (opened)="onTopicSectionOpened($event)">
+    <app-data-table [data]="lowerThanExpectedConsumers" [columns]="lowerThanExpectedColumns"></app-data-table>
+    <app-insights-card [insights]="[
+      'AMISP to Validate: Check for potential metering issues or communication gaps.',
+      'Field Team to Investigate: Physical site inspection where deviation >25%.',
+      'Consumer Notification: Alert to be issued in case of recurring anomalies.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 6: Consumer Profiling & Bucketing -->
+  <app-topic-section title="Consumer Consumption Profiling & Bucketing Report" [topicNumber]="6" (opened)="onTopicSectionOpened($event)">
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.1 Bucketing Logic</h3>
+      <app-bucket-logic-table [data]="bucketLogic"></app-bucket-logic-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.2 Consumer-Wise Profiling</h3>
+      <app-data-table [data]="consumerProfiles" [columns]="consumerProfileColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.3 Summary by Category & Bucket</h3>
+      <app-bucket-summary-table [data]="bucketSummary"></app-bucket-summary-table>
+    </div>
+    <app-insights-card [insights]="[
+      'Prioritize High Risk consumers for inspection and automated alerts.',
+      'Issue load enhancement notices where MD consistently exceeds SL.',
+      'Investigate zero use consumers with sanctioned load >1 kW.',
+      'Update risk categorization monthly or as per data availability.'
+    ]"></app-insights-card>
+  </app-topic-section>
+
+  <!-- Topic 7: Communication Gap & Ageing Analytics -->
+  <app-topic-section title="Communication Gap & Ageing Analytics Report" [topicNumber]="7" (opened)="onTopicSectionOpened($event)">
+    <app-summary-tiles [data]="communicationGapSummary"></app-summary-tiles>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.1 Communication Failure Ageing Category Summary</h3>
+      <app-data-table [data]="getCommunicationAgeingCategoriesWithIds()" [columns]="communicationAgeingCategoryColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.2 Circle / Division Level Breakdown</h3>
+      <app-data-table [data]="communicationCircleBreakdown" [columns]="communicationCircleBreakdownColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.3 Sample Meter-Level Detail (Extract)</h3>
+      <app-data-table [data]="communicationMeterDetails" [columns]="communicationMeterDetailColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.4 Root Cause Classification</h3>
+      <app-data-table [data]="getCommunicationRootCausesWithIds()" [columns]="communicationRootCauseColumns"></app-data-table>
+    </div>
+    <div class="space-y-4">
+      <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.5 Action Tracker – For AMISP</h3>
+      <app-data-table [data]="communicationActionTracker" [columns]="communicationActionTrackerColumns"></app-data-table>
+    </div>
+    <app-insights-card [insights]="[
+      '38% of communication failures are due to RF coverage issues - infrastructure upgrade needed.',
+      'Meters with >30 days ageing require immediate field intervention.',
+      '234 meters never communicated since installation - MDM configuration review required.',
+      'Prioritize action tracker items with deadlines approaching within 7 days.'
+    ]"></app-insights-card>
+  </app-topic-section>
+</app-base-page-layout>

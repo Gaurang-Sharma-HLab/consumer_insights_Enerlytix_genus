@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ThemeService, Theme } from '../../services/theme.service';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { BasePageLayoutComponent } from '../../components/base-page-layout/base-page-layout.component';
 
 @Component({
   selector: 'app-themes',
   standalone: true,
-  imports: [CommonModule, RouterModule, SidebarComponent],
+  imports: [CommonModule, RouterModule, BasePageLayoutComponent],
   templateUrl: './themes.component.html',
   styleUrl: './themes.component.css'
 })
