@@ -6,9 +6,7 @@
     [style.border-color]="'var(--border-color)'"
   >
     <div class="flex items-center gap-2 sm:gap-3 flex-1 min-w-0 overflow-hidden">
-      <span class="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg text-white font-bold text-xs sm:text-sm flex-shrink-0" [style.background-color]="'var(--accent-color)'">
-        {{ topicNumber }}
-      </span>
+      <app-topic-icon [iconName]="iconNameToDisplay"></app-topic-icon>
       <h2 class="text-sm sm:text-base lg:text-lg font-semibold truncate pr-2" [style.color]="'var(--text-primary)'">{{ title }}</h2>
     </div>
     <div class="flex-shrink-0">

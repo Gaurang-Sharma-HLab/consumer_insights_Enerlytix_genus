@@ -1,24 +1,38 @@
 import { Component, Input, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TopicIconService, IconName } from '../../services/topic-icon.service';
+import { TopicIconComponent } from '../topic-icon/topic-icon.component';
 
 @Component({
   selector: 'app-topic-section',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TopicIconComponent],
   templateUrl: './topic-section.component.html',
   styleUrl: './topic-section.component.css'
 })
 export class TopicSectionComponent implements OnInit {
   @Input() title: string = '';
-  @Input() topicNumber: number = 1;
+  @Input() topicNumber: number = 1; // Kept for backward compatibility, but not used for display
+  @Input() iconName?: IconName; // Optional: if provided, use this icon; otherwise auto-detect from title
   @Input() defaultOpen: boolean = false;
   @Input() isOpen: boolean = false;
   @Output() opened = new EventEmitter<TopicSectionComponent>();
   @ViewChild('sectionElement', { static: false }) sectionElement!: ElementRef<HTMLElement>;
   
+  iconNameToDisplay: IconName = 'default';
+  
+  constructor(private topicIconService: TopicIconService) {}
+  
   ngOnInit() {
     // Removed auto-open functionality - all sections start closed
     this.isOpen = false;
+    
+    // Determine icon to display
+    if (this.iconName) {
+      this.iconNameToDisplay = this.iconName;
+    } else {
+      this.iconNameToDisplay = this.topicIconService.getIconForTopic(this.title);
+    }
   }
 
   toggle() {
