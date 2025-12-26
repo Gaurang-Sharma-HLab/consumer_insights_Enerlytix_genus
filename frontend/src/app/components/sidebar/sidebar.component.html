@@ -1,0 +1,182 @@
+<!-- Toggle Button - Always Visible -->
+<button
+  (click)="toggleSidebar()"
+  class="fixed z-[2000] w-8 h-8 border-r border-b rounded-br-lg flex items-center justify-center cursor-pointer transition-all"
+  [style.left]="isCollapsed ? '0' : '255.99px'"
+  [style.top]="'56px'"
+  [style.background-color]="'var(--bg-card)'"
+  [style.border-color]="'var(--border-color)'"
+  [style.color]="'var(--text-primary)'"
+  [class.hover\:opacity-80]="true"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="7" height="18" rx="1"></rect>
+    <rect x="14" y="3" width="7" height="18" rx="1"></rect>
+  </svg>
+</button>
+
+<!-- Sidebar -->
+<div 
+  class="sidebar-container shrink-0 relative z-[3] transition-all duration-300 ease-in-out"
+  [class.w-[255.99px]]="!isCollapsed"
+  [class.w-0]="isCollapsed"
+  [style.height]="'100vh'"
+  [style.overflow]="isCollapsed ? 'hidden' : 'visible'"
+>
+  <div 
+    class="sidebar-background flex flex-col items-start self-stretch flex-nowrap relative transition-all duration-300"
+    [style.background-color]="'var(--bg-tertiary)'"
+    [style.width]="isCollapsed ? '0' : '255.99px'"
+    [style.height]="'100%'"
+  >
+    <!-- Logo Section -->
+    <div class="sidebar-header flex flex-col items-start p-2 w-full h-[80.83px] shrink-0 flex-nowrap relative" [style.display]="isCollapsed ? 'none' : 'flex'">
+      <div class="logo-container flex flex-row items-center px-2 py-3 w-[239.16px] h-[64px] shrink-0 flex-nowrap relative">
+        <img 
+          [src]="getLogoPath()" 
+          alt="Genus Logo" 
+          class="h-10 w-auto max-w-[239.16px] object-contain"
+        />
+      </div>
+    </div>
+    
+    <!-- Navigation List -->
+    <div 
+      class="sidebar-nav-container flex flex-col items-start px-2 pt-[7.99px] w-full flex-1 min-h-0 flex-nowrap relative overflow-y-auto"
+      [style.display]="isCollapsed ? 'none' : 'flex'"
+      [style.padding-bottom]="'8px'"
+    >
+      <div class="nav-list flex flex-col gap-1 items-start w-[239.17px] shrink-0 flex-nowrap relative">
+        <!-- Dashboard -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/dashboard" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/RhvymddZkt.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[74px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[74px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Dashboard</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Consumer Data Analysis -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/consumer-data-analysis" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/ahk1oF73Fw.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[162px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[162px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Consumer Data Analysis</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Revenue Protection -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/revenue-protection" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/3771xXmc1J.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[130px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[130px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Revenue Protection</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Preventive Maintenance -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/preventive-maintenance" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/S8JJCO9MLw.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start pr-[6.3px] w-[198.3px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[192px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Preventive Maintenance An…</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Energy Audit -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/energy-audit" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/3VxcQYQnz7.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[85px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[85px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Energy Audit</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Theft Protection Analysis -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/theft-protection" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/R1Wwxi2qx8.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[167px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[167px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Theft Protection Analysis</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Consumer Grievance -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/consumer-grievance" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/wok9YqZuOb.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[139px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[139px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Consumer Grievance</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Forecasting -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/forecasting" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/DwsSa4CfKx.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[78px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[78px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Forecasting</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Power Quality -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/power-quality" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/fddcef1e-6c10-4518-94c1-c60e5082a4f0.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[92px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[92px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Power Quality</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Reliability Indices -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/reliability-indices" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8342bd69-5a2d-4b91-9c3e-163b240adf8a.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[115px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[115px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Reliability Indices</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- VEE Report -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/vee-report" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/44982cb6-deff-48cf-ba46-96c8dd306a8c.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[75px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[75px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">VEE Report</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Operational Reports -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/operational-reports" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/279fb293-d3a9-45da-b1ab-f69190a89312.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[133px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[133px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Operational Reports</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Themes -->
+        <div class="nav-item flex flex-col items-start w-[239.17px] h-[31.99px] shrink-0 flex-nowrap relative">
+          <a routerLink="/themes" routerLinkActive="nav-link-active" class="nav-link flex flex-row items-center p-2 gap-[7.99px] w-[239.17px] h-[31.99px] rounded-[10px] shrink-0 flex-nowrap relative cursor-pointer">
+            <div class="nav-icon w-[15.99px] h-[15.99px] shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/061acd30-13ac-43c0-9c64-eae8c3bd89af.png)] bg-cover bg-no-repeat relative"></div>
+            <div class="nav-text-container flex flex-col items-start w-[54px] h-5 shrink-0 flex-nowrap relative">
+              <span class="nav-text w-[54px] h-5 font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Themes</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

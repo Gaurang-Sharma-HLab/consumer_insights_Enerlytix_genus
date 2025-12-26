@@ -1,0 +1,227 @@
+<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
+  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
+    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
+      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
+          <!-- Main Header -->
+          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
+            <div class="flex items-start shrink-0 flex-nowrap relative">
+              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
+                <div class="flex flex-col items-start flex-nowrap relative">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-secondary)'">Home</span>
+                </div>
+                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
+                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
+                </div>
+                <div class="flex flex-col items-start flex-nowrap relative">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Revenue Protection</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
+              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
+                </a>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
+                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
+                </a>
+                <div class="w-px h-6 shrink-0 relative" [style.background-color]="'var(--border-color)'"></div>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Sections -->
+          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
+            <div class="container mx-auto px-6 py-8 w-full pb-8">
+              <!-- Topic 1: Potential Revenue Loss Report – Due to No Power Supply -->
+              <app-topic-section title="Potential Revenue Loss Report – Due to No Power Supply" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="noPowerSupplySummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Area-wise No Power Supply Summary</h3>
+                  <app-data-table [data]="noPowerSupplyAreas" [columns]="noPowerSupplyAreaColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'Frequent outages in [Area Name] due to [reason – transformer failure / feeder fault / line maintenance].',
+                  'No timely alerts or restoration update observed in AMISP dashboard.',
+                  'Delay in restoration communication from field staff to AMISP control center.'
+                ]"></app-insights-card>
+              </app-topic-section>
+
+              <!-- Topic 2: Phase Unbalance Analysis Report – DT Level -->
+              <app-topic-section title="Phase Unbalance Analysis Report – DT Level" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="phaseUnbalanceSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 DT-wise Phase Unbalance & Technical Loss Analysis</h3>
+                  <app-data-table [data]="phaseUnbalanceDTs" [columns]="phaseUnbalanceDTColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'Significant unbalance (>30%) observed in [X] DTs, mostly in [Area/Feeder Names].',
+                  'Higher unbalance correlates with increased technical losses.',
+                  'Field correction (load shifting, neutral correction) showed measurable improvements.'
+                ]"></app-insights-card>
+              </app-topic-section>
+
+              <!-- Topic 3: Analytics Report – Meter Burnt Cases -->
+              <app-topic-section title="Analytics Report – Meter Burnt Cases (Frequent / Repeated Incidents)" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="meterBurntSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 Consumer-wise Report – Frequent Meter Burn Cases</h3>
+                  <app-data-table [data]="meterBurntConsumers" [columns]="meterBurntConsumerColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.2 Area/Feeder-Level Burn Pattern Summary</h3>
+                  <app-data-table [data]="meterBurntAreas" [columns]="meterBurntAreaColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.3 Root Cause Trends</h3>
+                  <app-data-table [data]="getMeterBurntRootCausesWithIds()" [columns]="meterBurntRootCauseColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 4: Load Violation & Enhancement Recommendation Report -->
+              <app-topic-section title="Load Violation & Enhancement Recommendation Report" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="loadViolationSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Consumer-Wise MD vs Sanctioned Load Analysis</h3>
+                  <app-data-table [data]="loadViolationConsumers" [columns]="loadViolationConsumerColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.2 Categorization of Load Enhancement Priority</h3>
+                  <app-data-table [data]="getLoadViolationPrioritiesWithIds()" [columns]="loadViolationPriorityColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.3 Load Enhancement Process Flow (Recommended)</h3>
+                  <app-data-table [data]="getLoadEnhancementProcessWithIds()" [columns]="loadEnhancementProcessColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 5: Exception Billing Report for Smart Meter Consumers -->
+              <app-topic-section title="Exception Billing Report for Smart Meter Consumers" [topicNumber]="5" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="exceptionBillingSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.1 Consumer-Wise Exception Billing Details</h3>
+                  <app-data-table [data]="exceptionBillingConsumers" [columns]="exceptionBillingConsumerColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">5.2 Categorization by Reason</h3>
+                  <app-data-table [data]="getExceptionBillingCategoriesWithIds()" [columns]="exceptionBillingCategoryColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 6: Revenue Protection Report – Revenue analytics -->
+              <app-topic-section title="Revenue Protection Report – Revenue analytics as per consumption pattern" [topicNumber]="6" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="revenueAnalyticsSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.1 Revenue Analytics by Consumer Pattern</h3>
+                  <app-data-table [data]="getRevenueAnalyticsSegmentsWithIds()" [columns]="revenueAnalyticsSegmentColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">6.2 Automatic Compensation Summary</h3>
+                  <app-data-table [data]="getAutomaticCompensationWithIds()" [columns]="automaticCompensationColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 7: Low Power Factor Analysis Report -->
+              <app-topic-section title="Low Power Factor Analysis Report: Low Power Factor Consumer Analysis & Forecasting" [topicNumber]="7" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="powerFactorSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.1 Power Factor Classification (Configurable)</h3>
+                  <app-data-table [data]="getPowerFactorClassificationsWithIds()" [columns]="powerFactorClassificationColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.2 Historical Low PF Trends (Last 7/30 Days)</h3>
+                  <app-data-table [data]="getPowerFactorHistoricalWithIds()" [columns]="powerFactorHistoricalColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.3 Forecasted PF Compliance & Impact (Next Month)</h3>
+                  <app-data-table [data]="getPowerFactorForecastWithIds()" [columns]="powerFactorForecastColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">7.4 Consumer Segment-wise PF Behavior</h3>
+                  <app-data-table [data]="getPowerFactorSegmentsWithIds()" [columns]="powerFactorSegmentColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 8: Revenue Protection Analysis Report: Recharge Trends vs Consumption -->
+              <app-topic-section title="Revenue Protection Analysis Report: Recharge Trends vs Consumption vs Credit Balance Tracking" [topicNumber]="8" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="rechargeTrendsSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">8.1 Analysis Parameters</h3>
+                  <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+                    <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
+                      <li><strong [style.color]="'var(--text-primary)'">From Date – To Date:</strong> [DD-MM-YYYY to DD-MM-YYYY]</li>
+                      <li><strong [style.color]="'var(--text-primary)'">Geography:</strong> [Circle → Division → Sub-division]</li>
+                      <li><strong [style.color]="'var(--text-primary)'">Gap % Threshold Selected:</strong> [e.g., 5%]</li>
+                      <li><strong [style.color]="'var(--text-primary)'">Consumer Selection:</strong> All active meters in the period</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">8.2 Mismatch Analysis Summary</h3>
+                  <app-data-table [data]="getRechargeTrendsSegmentsWithIds()" [columns]="rechargeTrendsSegmentColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">8.3 High-Risk Consumer List (Sample – Top 10 by Gap %)</h3>
+                  <app-data-table [data]="rechargeTrendsConsumers" [columns]="rechargeTrendsConsumerColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 9: Revenue Protection – Defective Meter Analysis Report -->
+              <app-topic-section title="Revenue Protection – Defective Meter Analysis Report: Defective Meter Report (Ageing & Reason for Defective)" [topicNumber]="9" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="defectiveMeterSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">9.1 Report Filters</h3>
+                  <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+                    <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
+                      <li><strong [style.color]="'var(--text-primary)'">Date Range:</strong> From: DD-MM-YYYY – To: DD-MM-YYYY</li>
+                      <li><strong [style.color]="'var(--text-primary)'">Circle / Division / Sub-division:</strong> [Selected region(s)]</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">9.2 Defective Meter Details (Descending Order by Ageing)</h3>
+                  <app-data-table [data]="defectiveMeterDetails" [columns]="defectiveMeterDetailColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">9.3 Defective Meter Risk Forecast (Next Month)</h3>
+                  <app-data-table [data]="getDefectiveMeterForecastWithIds()" [columns]="defectiveMeterForecastColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">9.4 Reason-wise Defective Meter Distribution</h3>
+                  <app-data-table [data]="getDefectiveMeterReasonsWithIds()" [columns]="defectiveMeterReasonColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+
+              <!-- Topic 10: Disconnected Prepaid Consumers Report -->
+              <app-topic-section title="Disconnected Prepaid Consumers Report - Consumers Not Recharged for >3 Days with Negative Prepaid Balance" [topicNumber]="10" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="disconnectedPrepaidSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">10.1 Consumer-Wise Report (Negative Balance > 3 Days)</h3>
+                  <app-data-table [data]="disconnectedPrepaidConsumers" [columns]="disconnectedPrepaidConsumerColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">10.2 Categorization by Duration of Non-Recharge</h3>
+                  <app-data-table [data]="getDisconnectedPrepaidCategoriesWithIds()" [columns]="disconnectedPrepaidCategoryColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'Majority of these consumers are in the residential category, showing signs of vacancy or disengagement.',
+                  'Relay OFF observed in [XX%] of the cases – indicating system-level disconnection.',
+                  'Potential for customer churn or non-technical loss recovery.'
+                ]"></app-insights-card>
+              </app-topic-section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

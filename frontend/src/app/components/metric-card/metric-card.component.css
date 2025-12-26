@@ -1,0 +1,42 @@
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-jetbrains-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.dashboard-tile {
+  background: transparent;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+}
+
+.dashboard-tile:hover {
+  border-color: currentColor;
+}
+
+.dashboard-tile-glow {
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.stat-label {
+  margin: 0;
+}
+
+.stat-value {
+  margin: 0;
+}
+
+.metric-card-link {
+  outline: none;
+}
+
+.metric-card-link:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+

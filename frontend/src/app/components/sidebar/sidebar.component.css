@@ -1,0 +1,26 @@
+.nav-link-active {
+  background-color: rgba(21, 28, 41, 1) !important;
+  font-weight: 500;
+}
+
+.nav-link-active .nav-text {
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background-color: rgba(31, 41, 55, 0.8);
+  transition: background-color 0.2s;
+}
+
+[data-theme="light"] .nav-link-active {
+  background-color: rgba(241, 245, 249, 1) !important;
+}
+
+[data-theme="light"] .nav-link:hover {
+  background-color: rgba(226, 232, 240, 0.8);
+}
+
+.sidebar-container {
+  transition: width 0.3s ease-in-out;
+}
+

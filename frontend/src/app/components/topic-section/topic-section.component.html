@@ -1,0 +1,27 @@
+<section class="mb-6 animate-fade-in">
+  <button
+    (click)="toggle()"
+    class="w-full flex items-center justify-between p-4 bg-card border border-theme rounded-xl hover:border-accent/50 transition-colors"
+    [style.background-color]="'var(--bg-card)'"
+    [style.border-color]="'var(--border-color)'"
+  >
+    <div class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-8 h-8 rounded-lg text-white font-bold text-sm" [style.background-color]="'var(--accent-color)'">
+        {{ topicNumber }}
+      </span>
+      <h2 class="text-lg font-semibold" [style.color]="'var(--text-primary)'">{{ title }}</h2>
+    </div>
+    <svg *ngIf="isOpen" class="h-5 w-5" [style.color]="'var(--text-secondary)'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+    </svg>
+    <svg *ngIf="!isOpen" class="h-5 w-5" [style.color]="'var(--text-secondary)'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  
+  <div [class]="'overflow-hidden transition-all duration-300 ' + (isOpen ? 'mt-4 max-h-[5000px] opacity-100' : 'max-h-0 opacity-0')">
+    <div class="space-y-6">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</section>

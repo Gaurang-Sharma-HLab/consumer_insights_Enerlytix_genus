@@ -1,0 +1,38 @@
+<div [class]="'overflow-x-auto rounded-xl border bg-card ' + className" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+  <table class="w-full text-sm">
+    <thead>
+      <tr [style.border-bottom-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card-hover)'">
+        <th
+          *ngFor="let col of columns"
+          [class]="'px-4 py-3 text-left font-semibold whitespace-nowrap ' + (col.className || '')"
+          [style.color]="'var(--text-primary)'"
+        >
+          {{ col.header }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let row of data; let i = index"
+        [style.border-bottom-color]="'var(--border-color)'"
+        [style.background-color]="i % 2 === 0 ? 'transparent' : 'var(--bg-card)'"
+        class="hover:opacity-80 transition-colors"
+      >
+        <td
+          *ngFor="let col of columns"
+          [class]="'px-4 py-3 whitespace-nowrap ' + (col.className || '')"
+          [style.color]="'var(--text-primary)'"
+        >
+          <ng-container *ngIf="getCellValue(row, col.accessor) as cellValue">
+            <span *ngIf="isStringOrNumber(cellValue)">{{ cellValue }}</span>
+            <app-status-badge 
+              *ngIf="isStatusBadge(cellValue)" 
+              [status]="cellValue.status" 
+              [variant]="cellValue.variant">
+            </app-status-badge>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

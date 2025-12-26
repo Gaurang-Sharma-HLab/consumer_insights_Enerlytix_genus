@@ -1,0 +1,31 @@
+<div class="overflow-x-auto rounded-xl border bg-card" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+  <table class="w-full text-sm">
+    <thead>
+      <tr [style.border-bottom-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card-hover)'">
+        <th class="px-4 py-3 text-left font-semibold" [style.color]="'var(--text-primary)'">Consumer Category</th>
+        <th class="px-4 py-3 text-right font-semibold" [style.color]="'var(--text-primary)'">High Risk</th>
+        <th class="px-4 py-3 text-right font-semibold" [style.color]="'var(--text-primary)'">Medium Risk</th>
+        <th class="px-4 py-3 text-right font-semibold" [style.color]="'var(--text-primary)'">Low Risk</th>
+        <th class="px-4 py-3 text-right font-semibold" [style.color]="'var(--text-primary)'">Zero Use</th>
+        <th class="px-4 py-3 text-right font-semibold" [style.color]="'var(--text-primary)'">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let row of data; let i = index"
+        [style.border-bottom-color]="'var(--border-color)'"
+        [style.background-color]="row.category === 'Total' ? 'var(--bg-card-hover)' : (i % 2 === 0 ? 'transparent' : 'var(--bg-card)')"
+        [class.font-bold]="row.category === 'Total'"
+        class="hover:opacity-80 transition-colors"
+      >
+        <td class="px-4 py-3 font-medium" [style.color]="'var(--text-primary)'">{{ row.category }}</td>
+        <td class="px-4 py-3 text-right font-mono text-red-500">{{ row.highRisk.toLocaleString() }}</td>
+        <td class="px-4 py-3 text-right font-mono text-amber-500">{{ row.mediumRisk.toLocaleString() }}</td>
+        <td class="px-4 py-3 text-right font-mono text-emerald-500">{{ row.lowRisk.toLocaleString() }}</td>
+        <td class="px-4 py-3 text-right font-mono" [style.color]="'var(--text-secondary)'">{{ row.zeroUse.toLocaleString() }}</td>
+        <td class="px-4 py-3 text-right font-mono font-bold" [style.color]="'var(--text-primary)'">{{ row.total.toLocaleString() }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

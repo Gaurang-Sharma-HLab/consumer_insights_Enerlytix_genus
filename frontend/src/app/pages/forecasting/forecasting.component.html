@@ -1,0 +1,100 @@
+<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
+  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
+    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
+      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
+          <!-- Main Header -->
+          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
+            <div class="flex items-start shrink-0 flex-nowrap relative">
+              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
+                <div class="flex flex-col items-start flex-nowrap relative">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-secondary)'">Home</span>
+                </div>
+                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
+                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
+                </div>
+                <div class="flex flex-col items-start flex-nowrap relative">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Forecasting</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
+              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
+                </a>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
+                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
+                </a>
+                <div class="w-px h-6 shrink-0 relative" [style.background-color]="'var(--border-color)'"></div>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Sections -->
+          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
+            <div class="container mx-auto px-6 py-8 w-full pb-8">
+              <!-- Topic 1: Load Forecasting Report -->
+              <app-topic-section title="Load Forecasting Report: Load Forecasting & Consumer Usage Behavior Categorization" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="loadForecastSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Load Forecast Summary – By Consumer Category</h3>
+                  <app-data-table [data]="getLoadForecastByCategoryWithIds()" [columns]="loadForecastByCategoryColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.2 Consumer Behavior-Based Categorization</h3>
+                  <div class="bg-card border rounded-xl p-4 mb-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+                    <h4 class="text-sm font-semibold mb-2" [style.color]="'var(--text-primary)'">Category Definitions:</h4>
+                    <ul class="space-y-1 text-sm" [style.color]="'var(--text-secondary)'">
+                      <li><strong>Peak-Heavy</strong> – >70% of usage during 6–10 PM or 10–2 PM</li>
+                      <li><strong>Solar User</strong> – Consistently low grid import during daylight</li>
+                      <li><strong>Low-User</strong> – <2 kWh/day for 3+ consecutive months</li>
+                      <li><strong>Night Peak</strong> – >50% of energy consumed during 8 PM–6 AM</li>
+                    </ul>
+                  </div>
+                  <app-data-table [data]="getConsumerBehaviorCategoriesWithIds()" [columns]="consumerBehaviorCategoryColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'Targeted load management during festive evening peaks',
+                  'Shift peak-heavy users with ToD (Time of Day) pricing',
+                  'Promote solar + battery to reduce peak imports in commercial sectors',
+                  'Flag low-user/idle meters for usage verification or deactivation',
+                  'Expand EV charging support during night valleys (8 PM–4 AM)'
+                ]"></app-insights-card>
+              </app-topic-section>
+
+              <!-- Topic 2: ToD-wise Consumption Analysis & Forecasting Report -->
+              <app-topic-section title="ToD-wise Consumption Analysis & Forecasting Report: ToD-wise Consumption Analysis and Forecasting" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="todSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 ToD Interval Definitions (Configurable)</h3>
+                  <app-data-table [data]="getTodIntervalsWithIds()" [columns]="todIntervalColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.2 Historical ToD Consumption Trends (Last 7/30 Days)</h3>
+                  <app-data-table [data]="todHistorical" [columns]="todHistoricalColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.3 Forecasted Energy Requirement (Next Month)</h3>
+                  <app-data-table [data]="todForecast" [columns]="todForecastColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.4 Consumer Segment-wise ToD Behavior Analysis</h3>
+                  <app-data-table [data]="getTodSegmentsWithIds()" [columns]="todSegmentColumns"></app-data-table>
+                </div>
+              </app-topic-section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,329 @@
+<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
+  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
+    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
+      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-col items-start flex-1 min-w-0 h-full flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
+          <!-- Header -->
+          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
+            <div class="w-6 h-7 shrink-0 relative z-[6]">
+              <div class="flex w-7 h-7 justify-center items-center flex-nowrap rounded-[10px] absolute top-0 left-[-4px] z-[7]">
+                <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/image/2025-12-25/bnFh1akXpw.png)] bg-cover bg-no-repeat relative z-[8]"></div>
+              </div>
+            </div>
+            <div class="w-px h-6 shrink-0 bg-[#1d283a] relative z-[9]"></div>
+            <div class="flex items-start shrink-0 flex-nowrap relative z-10">
+              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative z-[11]">
+                <div class="flex flex-col items-start flex-nowrap relative z-[12]">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap z-[13]">Home</span>
+                </div>
+                <div class="flex w-3.5 flex-col items-start flex-nowrap relative z-[14]">
+                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative z-[15]"></div>
+                </div>
+                <div class="flex flex-col items-start flex-nowrap relative z-[16]">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#f8fafc] relative text-left whitespace-nowrap z-[17]">Dashboard Overview</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative z-[18]">
+              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative z-[19]">
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative z-20">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative z-[21]"></div>
+                </a>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative z-[22]">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative z-[23]"></div>
+                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1 z-[24]"></div>
+                </a>
+                <div class="w-px h-6 shrink-0 bg-[#1d283a] relative z-[25]"></div>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative z-[26]">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative z-[27]"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
+            <div class="container mx-auto px-6 py-8 w-full pb-8">
+              <!-- Consumer Data Analysis Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-30">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[31]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[32]">Consumer Data Analysis</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[33]">
+                  <app-metric-card *ngFor="let metric of consumerDataMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Revenue Protection Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[90]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[91]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[92]">Revenue Protection</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[93]">
+                  <app-metric-card *ngFor="let metric of revenueProtectionMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Preventive Maintenance Analysis Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[150]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[151]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[152]">Preventive Maintenance Analysis</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[153]">
+                  <app-metric-card *ngFor="let metric of preventiveMaintenanceMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Energy Audit Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[210]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[211]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[212]">Energy Audit</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[213]">
+                  <app-metric-card *ngFor="let metric of energyAuditMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Theft Protection Analysis Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[270]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[271]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[272]">Theft Protection Analysis</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[273]">
+                  <app-metric-card *ngFor="let metric of theftProtectionMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Power Quality Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[450]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[451]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[452]">Power Quality</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[453]">
+                  <app-metric-card *ngFor="let metric of powerQualityMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Reliability Indices Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[510]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[511]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[512]">Reliability Indices</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[513]">
+                  <app-metric-card *ngFor="let metric of reliabilityIndicesMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- VEE Report Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[630]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[631]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[632]">VEE Report</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[633]">
+                  <app-metric-card *ngFor="let metric of veeReportMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Operational Reports Section -->
+              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[630]">
+                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[631]">
+                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[632]">Operational Reports</span>
+                </div>
+                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[633]">
+                  <app-metric-card *ngFor="let metric of operationalReportsMetrics" [metric]="metric"></app-metric-card>
+                </div>
+              </div>
+
+              <!-- Consumption Issues Heatmap Section -->
+              <div class="flex pt-6 pr-6 pb-6 pl-6 flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap bg-[#0b111e] rounded-xl border-solid border border-[#1d283a] relative z-[690]">
+                <div class="flex w-full pt-0 pr-0 pb-0.5 pl-0 flex-col items-start shrink-0 flex-nowrap relative z-[691]">
+                  <span class="h-7 shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#f8fafc] relative text-left whitespace-nowrap z-[692]">Consumption Issues Heatmap by Subdivision</span>
+                </div>
+                <div class="flex w-full flex-col gap-0 items-start shrink-0 flex-nowrap relative overflow-hidden z-[693]">
+                  <!-- Header Row -->
+                  <div class="flex justify-center items-start self-stretch shrink-0 flex-nowrap relative z-[694]">
+                    <div class="flex w-[229px] pt-2 pr-3 pb-2 pl-3 flex-col items-start shrink-0 flex-nowrap relative z-[695]">
+                      <span class="h-5 shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#7588a3] relative text-left whitespace-nowrap z-[696]">Subdivision</span>
+                    </div>
+                    <div class="flex w-[334px] pt-2 pr-3 pb-2 pl-3 flex-col items-center shrink-0 flex-nowrap relative z-[697]">
+                      <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#7588a3] relative text-center whitespace-nowrap z-[698]">Zero Consumption</span>
+                    </div>
+                    <div class="flex w-[223px] pt-2 pr-3 pb-2 pl-3 flex-col items-center shrink-0 flex-nowrap relative z-[699]">
+                      <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#7588a3] relative text-center whitespace-nowrap z-[700]">Comm. Fail</span>
+                    </div>
+                    <div class="flex w-[226px] pt-2 pr-3 pb-2 pl-3 flex-col items-center shrink-0 flex-nowrap relative z-[701]">
+                      <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#7588a3] relative text-center whitespace-nowrap z-[702]">Meter Fault</span>
+                    </div>
+                    <div class="flex w-[216px] pt-2 pr-3 pb-2 pl-3 flex-col items-center shrink-0 flex-nowrap relative z-[703]">
+                      <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#7588a3] relative text-center whitespace-nowrap z-[704]">Tampering</span>
+                    </div>
+                  </div>
+                  <!-- Data Rows -->
+                  <div class="flex flex-col gap-0 items-start self-stretch shrink-0 flex-nowrap relative z-[705]">
+                    <!-- Sub-A Row -->
+                    <div class="flex pt-0 pr-3 pb-0 pl-0 gap-3 justify-center items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[rgba(29,40,58,0.5)] relative z-[706]">
+                      <div class="flex w-[229px] pt-[18px] pr-3 pb-[18px] pl-3 flex-col items-start shrink-0 flex-nowrap relative z-[707]">
+                        <span class="h-5 shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#f8fafc] relative text-left whitespace-nowrap z-[708]">Sub-A</span>
+                      </div>
+                      <div class="flex w-[310px] h-10 pt-[10px] pr-0 pb-[10px] pl-0 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.6)] rounded-[10px] relative z-[709]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[710]">45</span>
+                      </div>
+                      <div class="flex w-[211px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.3)] rounded-[10px] relative z-[711]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[712]">23</span>
+                      </div>
+                      <div class="flex w-[214px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.3)] rounded-[10px] relative z-[713]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[714]">12</span>
+                      </div>
+                      <div class="flex w-[204px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.6)] rounded-[10px] relative z-[715]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[716]">8</span>
+                      </div>
+                    </div>
+                    <!-- Sub-B Row -->
+                    <div class="flex pt-0 pr-3 pb-0 pl-0 gap-3 justify-center items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[rgba(29,40,58,0.5)] relative z-[717]">
+                      <div class="flex w-[229px] pt-[18px] pr-3 pb-[18px] pl-3 flex-col items-start shrink-0 flex-nowrap relative z-[718]">
+                        <span class="h-5 shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#f8fafc] relative text-left whitespace-nowrap z-[719]">Sub-B</span>
+                      </div>
+                      <div class="flex w-[310px] h-10 pt-[10px] pr-0 pb-[10px] pl-0 justify-center items-center shrink-0 flex-nowrap bg-[rgba(239,67,67,0.6)] rounded-[10px] relative z-[720]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[721]">67</span>
+                      </div>
+                      <div class="flex w-[211px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.6)] rounded-[10px] relative z-[722]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[723]">34</span>
+                      </div>
+                      <div class="flex w-[214px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.6)] rounded-[10px] relative z-[724]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[725]">18</span>
+                      </div>
+                      <div class="flex w-[204px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.3)] rounded-[10px] relative z-[726]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[727]">5</span>
+                      </div>
+                    </div>
+                    <!-- Sub-C Row -->
+                    <div class="flex pt-0 pr-3 pb-0 pl-0 gap-3 justify-center items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[rgba(29,40,58,0.5)] relative z-[728]">
+                      <div class="flex w-[229px] pt-[18px] pr-3 pb-[18px] pl-3 flex-col items-start shrink-0 flex-nowrap relative z-[729]">
+                        <span class="h-5 shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#f8fafc] relative text-left whitespace-nowrap z-[730]">Sub-C</span>
+                      </div>
+                      <div class="flex w-[310px] h-10 pt-[10px] pr-0 pb-[10px] pl-0 justify-center items-center shrink-0 flex-nowrap bg-[rgba(239,67,67,0.8)] rounded-[10px] relative z-[731]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[732]">89</span>
+                      </div>
+                      <div class="flex w-[211px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(239,67,67,0.8)] rounded-[10px] relative z-[733]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[734]">56</span>
+                      </div>
+                      <div class="flex w-[214px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(239,67,67,0.8)] rounded-[10px] relative z-[735]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[736]">25</span>
+                      </div>
+                      <div class="flex w-[204px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(239,67,67,0.8)] rounded-[10px] relative z-[737]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[738]">15</span>
+                      </div>
+                    </div>
+                    <!-- Sub-D Row -->
+                    <div class="flex pt-0 pr-3 pb-0 pl-0 gap-3 justify-center items-center self-stretch shrink-0 flex-nowrap border-solid border-b border-b-[rgba(29,40,58,0.5)] relative z-[739]">
+                      <div class="flex w-[229px] pt-[18px] pr-3 pb-[18px] pl-3 flex-col items-start shrink-0 flex-nowrap relative z-[740]">
+                        <span class="h-5 shrink-0 basis-auto font-inter text-sm font-medium leading-5 text-[#f8fafc] relative text-left whitespace-nowrap z-[741]">Sub-D</span>
+                      </div>
+                      <div class="flex w-[310px] h-10 pt-[10px] pr-0 pb-[10px] pl-0 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.3)] rounded-[10px] relative z-[742]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[743]">34</span>
+                      </div>
+                      <div class="flex w-[211px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(22,162,73,0.3)] rounded-[10px] relative z-[744]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[745]">19</span>
+                      </div>
+                      <div class="flex w-[214px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(22,162,73,0.3)] rounded-[10px] relative z-[746]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[747]">10</span>
+                      </div>
+                      <div class="flex w-[204px] h-10 pt-[10px] pr-0 pb-[10px] pl-3 justify-center items-center shrink-0 flex-nowrap bg-[rgba(245,159,10,0.3)] rounded-[10px] relative z-[748]">
+                        <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-jetbrains-mono text-sm font-bold leading-5 text-[#f8fafc] relative text-center whitespace-nowrap z-[749]">7</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Legend -->
+                  <div class="flex pt-4 gap-4 items-center shrink-0 flex-nowrap relative z-[750]">
+                    <div class="flex gap-2 items-center shrink-0 flex-nowrap relative z-[751]">
+                      <div class="w-3.5 h-3.5 shrink-0 bg-[#16a249] rounded relative z-[752]"></div>
+                      <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap z-[753]">Low</span>
+                    </div>
+                    <div class="flex gap-2 items-center shrink-0 flex-nowrap relative z-[754]">
+                      <div class="w-3.5 h-3.5 shrink-0 bg-[#f59f0a] rounded relative z-[755]"></div>
+                      <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap z-[756]">Medium</span>
+                    </div>
+                    <div class="flex gap-2 items-center shrink-0 flex-nowrap relative z-[757]">
+                      <div class="w-3.5 h-3.5 shrink-0 bg-[#ef4343] rounded relative z-[758]"></div>
+                      <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap z-[759]">High</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Distribution by Circle Section -->
+              <div class="flex pt-2 pr-0 pb-0 pl-0 flex-col gap-6 items-start self-stretch shrink-0 flex-nowrap relative z-[817]">
+                <div class="flex items-center self-stretch shrink-0 flex-nowrap relative z-[818]">
+                  <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start grow shrink-0 basis-0 flex-nowrap relative z-[819]">
+                    <span class="h-7 shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[820]">Distribution by Circle</span>
+                  </div>
+                </div>
+                <div class="flex pt-6 pr-6 pb-6 pl-6 flex-col items-start self-stretch shrink-0 flex-nowrap bg-[#0b111e] rounded-xl border-solid border border-[#1d283a] relative z-[821]">
+                  <div class="flex w-full h-[280px] flex-col justify-center items-start shrink-0 flex-nowrap relative z-[822]">
+                    <div class="w-full text-center text-[#7588a3] font-inter text-sm py-20">Bar Chart Placeholder - Distribution by Circle (North, East, South, West, Central)</div>
+                    <div class="flex w-full pt-5 gap-4 items-center justify-center shrink-0 flex-nowrap relative z-[884]">
+                      <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
+                        <div class="w-3.5 h-3.5 shrink-0 bg-[#ef4343] rounded relative"></div>
+                        <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap">High Consumption</span>
+                      </div>
+                      <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
+                        <div class="w-3.5 h-3.5 shrink-0 bg-[#f59f0a] rounded relative"></div>
+                        <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap">Low Consumption</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Consumption Patterns Section -->
+              <div class="flex pt-2 pr-0 pb-0 pl-0 flex-col gap-6 items-start self-stretch shrink-0 flex-nowrap relative z-[892]">
+                <div class="flex pt-0 pr-0 pb-0 pl-0 justify-between items-center self-stretch shrink-0 flex-nowrap relative z-[893]">
+                  <div class="flex w-[253px] pt-0 pr-0 pb-0.5 pl-0 flex-col items-start shrink-0 flex-nowrap relative z-[894]">
+                    <span class="h-7 shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[895]">Consumption Patterns</span>
+                  </div>
+                  <div class="flex w-[125px] gap-2 items-center shrink-0 flex-nowrap relative z-[896]">
+                    <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/fd5613b5-ac09-4885-8681-62304abb45d9.png)] bg-cover bg-no-repeat relative z-[897]"></div>
+                    <span class="flex h-5 justify-center items-center shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#3c83f6] relative text-center whitespace-nowrap z-[898]">View All Charts</span>
+                  </div>
+                </div>
+                <div class="flex gap-6 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[899]">
+                  <div class="flex pt-6 pr-6 pb-6 pl-6 flex-col gap-4 items-start shrink-0 flex-nowrap bg-[#0b111e] rounded-xl border-solid border border-[#1d283a] relative z-[900]">
+                    <div class="flex w-[600px] pt-0 pr-0 pb-0.5 pl-0 flex-col items-start shrink-0 flex-nowrap relative z-[901]">
+                      <span class="h-7 shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#f8fafc] relative text-left whitespace-nowrap z-[902]">Top 10 Consumers - Sudden Spike</span>
+                    </div>
+                    <div class="w-full h-[400px] text-center text-[#7588a3] font-inter text-sm py-20">Horizontal Bar Chart Placeholder</div>
+                  </div>
+                  <div class="flex pt-6 pr-6 pb-6 pl-6 flex-col gap-4 items-start shrink-0 flex-nowrap bg-[#0b111e] rounded-xl border-solid border border-[#1d283a] relative z-[950]">
+                    <div class="flex w-[600px] pt-0 pr-0 pb-0.5 pl-0 flex-col items-start shrink-0 flex-nowrap relative z-[951]">
+                      <span class="h-7 shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#f8fafc] relative text-left whitespace-nowrap z-[952]">Top 10 Consumers - Sudden Drop</span>
+                    </div>
+                    <div class="w-full h-[400px] text-center text-[#7588a3] font-inter text-sm py-20">Horizontal Bar Chart Placeholder</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Zero Consumption Trend Section -->
+              <div class="flex pt-2 pr-0 pb-0 pl-0 flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[1061]">
+                <div class="flex pt-6 pr-6 pb-6 pl-6 flex-col gap-1 items-start self-stretch shrink-0 flex-nowrap bg-[#0b111e] rounded-xl border-solid border border-[#1d283a] relative z-[1061]">
+                  <div class="flex w-full pt-0 pr-0 pb-0.5 pl-0 flex-col items-start shrink-0 flex-nowrap relative z-[1062]">
+                    <span class="h-7 shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#f8fafc] relative text-left whitespace-nowrap z-[1063]">Zero Consumption Trend</span>
+                  </div>
+                  <div class="flex w-full flex-col items-start shrink-0 flex-nowrap relative z-[1064]">
+                    <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 text-[#7588a3] relative text-left whitespace-nowrap z-[1065]">Monthly count of zero-unit consumers</span>
+                  </div>
+                  <div class="flex w-full h-[320px] pt-5 pr-0 pb-0 pl-0 flex-col justify-center items-start shrink-0 flex-nowrap relative z-[1066]">
+                    <div class="w-full text-center text-[#7588a3] font-inter text-sm py-20">Line Chart Placeholder - Monthly trend from Jan to Dec</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

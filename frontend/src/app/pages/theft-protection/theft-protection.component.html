@@ -1,0 +1,128 @@
+<div class="main-container w-full relative" [style.background-color]="'var(--bg-primary)'">
+  <div class="flex w-full h-full flex-col items-start flex-nowrap relative">
+    <div class="flex justify-start items-start self-stretch flex-1 min-h-0 flex-nowrap relative z-[1]">
+      <div class="flex items-start w-full h-full flex-nowrap relative z-[2]">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-col items-start flex-1 min-h-0 flex-nowrap relative z-[4]" [style.background-color]="'var(--bg-secondary)'">
+          <!-- Main Header -->
+          <div class="flex h-14 pt-0 pr-4 pb-0 pl-4 gap-4 items-center self-stretch shrink-0 flex-nowrap bg-[rgba(8,12,22,0.6)] relative z-[5]">
+            <div class="flex items-start shrink-0 flex-nowrap relative">
+              <div class="flex gap-2.5 items-center self-stretch shrink-0 flex-wrap relative">
+                <div class="flex flex-col items-start flex-nowrap relative">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-secondary)'">Home</span>
+                </div>
+                <div class="flex w-3.5 flex-col items-start flex-nowrap relative">
+                  <div class="w-3.5 h-3.5 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/b944d036-985d-4995-9e5b-353de5c1111a.png)] bg-cover bg-no-repeat relative"></div>
+                </div>
+                <div class="flex flex-col items-start flex-nowrap relative">
+                  <span class="h-5 shrink-0 basis-auto font-inter text-sm font-normal leading-5 relative text-left whitespace-nowrap" [style.color]="'var(--text-primary)'">Theft Protection Analysis</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex pt-0 pr-0 pb-0 pl-auto flex-col items-end grow shrink-0 basis-0 flex-nowrap relative">
+              <div class="flex gap-2 items-center shrink-0 flex-nowrap relative">
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/9db7dd38-a12d-476a-8fed-674d65495f8b.png)] bg-cover bg-no-repeat relative"></div>
+                </a>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/e15e0882-e566-4fe2-8222-392b0128c1e9.png)] bg-cover bg-no-repeat relative"></div>
+                  <div class="w-2 h-2 shrink-0 bg-[#ef4343] rounded-full absolute top-1 right-1"></div>
+                </a>
+                <div class="w-px h-6 shrink-0 relative" [style.background-color]="'var(--border-color)'"></div>
+                <a class="header-icon flex w-8 h-8 justify-center items-center shrink-0 flex-nowrap rounded-[10px] relative cursor-pointer hover:opacity-75 transition-opacity">
+                  <div class="w-4 h-4 shrink-0 bg-[url(https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/8a1a247e-5e69-47f3-abc2-2d7e211352a2.png)] bg-cover bg-no-repeat relative"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Sections -->
+          <div class="flex flex-col items-start self-stretch flex-1 min-h-0 flex-nowrap relative overflow-y-auto overflow-x-visible z-[28]" style="max-height: calc(100vh - 56px);">
+            <div class="container mx-auto px-6 py-8 w-full pb-8">
+              <!-- Topic 1: Consumers with Consumption Lower Than Expected Pattern -->
+              <app-topic-section title="Consumers with Consumption Lower Than Expected Pattern" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="lowerThanExpectedSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Consumer-wise Report</h3>
+                  <app-data-table [data]="lowerThanExpectedConsumers" [columns]="lowerThanExpectedColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'AMISP to Validate: Check for potential metering issues or communication gaps.',
+                  'Field Team to Investigate: Physical site inspection where deviation >25%.',
+                  'Consumer Notification: Alert to be issued in case of recurring anomalies.',
+                  'Rectification: Rectify wiring, communication, or technical issues if detected.'
+                ]"></app-insights-card>
+              </app-topic-section>
+
+              <!-- Topic 2: Day Use with Zero Night Consumption -->
+              <app-topic-section title="Abnormal Consumption Pattern – Day Use with Zero Night Consumption" [topicNumber]="2" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="dayNightSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">2.1 Consumer-wise Report (Day Consumption with Zero Night Units)</h3>
+                  <app-data-table [data]="dayNightConsumers" [columns]="dayNightConsumerColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  '342 consumers show consistent zero-night consumption despite normal day usage.',
+                  'Mostly observed in urban slums / high-density residential areas.',
+                  'Possible bypassing or night-time disconnect of metering circuit.'
+                ]"></app-insights-card>
+              </app-topic-section>
+
+              <!-- Topic 3: Net Meters with Export During Odd Hours -->
+              <app-topic-section title="Net Meters with Export During Odd Hours" [topicNumber]="3" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="netMeterExportSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">3.1 Consumer-wise Report</h3>
+                  <app-data-table [data]="netMeterExports" [columns]="netMeterExportColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'Site Inspection: Verify wiring correctness and inverter configuration at site.',
+                  'Data Validation: Cross-verify with meter load survey and inverter logs.',
+                  'Consumer Communication: Notify consumer for explanation, if needed.',
+                  'Rectification: Correct polarity or disconnection of unauthorized sources, if identified.'
+                ]"></app-insights-card>
+              </app-topic-section>
+
+              <!-- Topic 4: Suspected Consumers Report – Tamper Analytics & Profiling -->
+              <app-topic-section title="Suspected Consumers Report – Tamper Analytics & Profiling" [topicNumber]="4" (opened)="onTopicSectionOpened($event)">
+                <app-summary-tiles [data]="tamperAnalyticsSummary"></app-summary-tiles>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.1 Tamper-Based Risk Classification Logic</h3>
+                  <div class="bg-card border rounded-xl p-4" [style.border-color]="'var(--border-color)'" [style.background-color]="'var(--bg-card)'">
+                    <ul class="space-y-2" [style.color]="'var(--text-secondary)'">
+                      <li><strong [style.color]="'var(--text-primary)'">High Risk</strong> = Tamper Score ≥ 12 in a month</li>
+                      <li><strong [style.color]="'var(--text-primary)'">Medium Risk</strong> = Tamper Score 7–11</li>
+                      <li><strong [style.color]="'var(--text-primary)'">Low Risk</strong> = Tamper Score < 7</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.2 Tamper Event Weightage</h3>
+                  <app-data-table [data]="getTamperEventsWithIds()" [columns]="tamperEventColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.3 Consumer-Wise Suspected Tamper Event Summary</h3>
+                  <app-data-table [data]="suspectedTamperConsumers" [columns]="suspectedTamperConsumerColumns"></app-data-table>
+                </div>
+                <div class="space-y-4">
+                  <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">4.4 Area-Wise / Feeder-Wise Heatmap of High-Risk Consumers</h3>
+                  <app-data-table [data]="areaWiseTamperHeatmap" [columns]="areaWiseTamperHeatmapColumns"></app-data-table>
+                </div>
+                <app-insights-card [insights]="[
+                  'Immediate field inspection of all High-Risk consumers within 7 days.',
+                  'Equip field teams with previous theft cases and tamper analytics during site visit.',
+                  'Loop closure to be done by AMISP within 48 hours of field action (report with photo evidence).',
+                  'Tag consumers in MDMS for continuous tamper alert tracking.',
+                  'Recommend CT calibration or meter replacement for flagged CT Open/BYPASS repeat events.'
+                ]"></app-insights-card>
+              </app-topic-section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
