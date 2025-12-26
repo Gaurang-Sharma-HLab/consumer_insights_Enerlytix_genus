@@ -10,7 +10,6 @@ import { ForecastingComponent } from './pages/forecasting/forecasting.component'
 import { PowerQualityComponent } from './pages/power-quality/power-quality.component';
 import { ReliabilityIndicesComponent } from './pages/reliability-indices/reliability-indices.component';
 import { VeeReportComponent } from './pages/vee-report/vee-report.component';
-import { OperationalReportsComponent } from './pages/operational-reports/operational-reports.component';
 import { ThemesComponent } from './pages/themes/themes.component';
 
 export const routes: Routes = [
@@ -26,6 +25,5 @@ export const routes: Routes = [
   { path: 'power-quality', component: PowerQualityComponent },
   { path: 'reliability-indices', component: ReliabilityIndicesComponent },
   { path: 'vee-report', component: VeeReportComponent },
-  { path: 'operational-reports', component: OperationalReportsComponent },
   { path: 'themes', component: ThemesComponent },
 ];

@@ -76,11 +76,4 @@ export class DashboardComponent {
     { title: 'Failed Validation', value: '23', description: 'Needs review', color: 'red', iconUrl: 'https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/1449f8b3-5009-46dd-9dd9-c3b196653e44.png' }
   ];
 
-  // Operational Reports
-  operationalReportsMetrics: MetricCardData[] = [
-    { title: 'Daily Reports', value: '45', description: 'Generated today', color: 'blue', iconUrl: 'https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/294e9532-2d29-4fd3-a4fc-b1176f7fb00e.png' },
-    { title: 'Weekly Summary', value: '7', description: 'This week', color: 'green', iconUrl: 'https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/3628def1-cc06-4ecb-bbdd-e816b13c8256.png' },
-    { title: 'Monthly Reports', value: '1', description: 'This month', color: 'blue', iconUrl: 'https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/294e9532-2d29-4fd3-a4fc-b1176f7fb00e.png' },
-    { title: 'Pending Reports', value: '12', description: 'Awaiting generation', color: 'orange', iconUrl: 'https://codia-f2c.s3.us-west-1.amazonaws.com/default/image/2025-12-25/02017d3b-971f-4336-a389-d11a321fb8c7.png' }
-  ];
 }

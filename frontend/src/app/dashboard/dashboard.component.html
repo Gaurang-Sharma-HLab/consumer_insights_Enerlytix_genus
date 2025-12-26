@@ -128,16 +128,6 @@
                 </div>
               </div>
 
-              <!-- Operational Reports Section -->
-              <div class="flex flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap relative z-[630]">
-                <div class="flex pt-0 pr-0 pb-0.5 pl-0 flex-col items-start self-stretch shrink-0 flex-nowrap relative z-[631]">
-                  <span class="h-7 self-stretch shrink-0 basis-auto font-inter text-lg font-semibold leading-7 text-[#7588a3] tracking-[0.9px] relative text-left uppercase whitespace-nowrap z-[632]">Operational Reports</span>
-                </div>
-                <div class="flex gap-4 justify-center items-start self-stretch shrink-0 flex-wrap relative z-[633]">
-                  <app-metric-card *ngFor="let metric of operationalReportsMetrics" [metric]="metric"></app-metric-card>
-                </div>
-              </div>
-
               <!-- Consumption Issues Heatmap Section -->
               <div class="flex pt-6 pr-6 pb-6 pl-6 flex-col gap-4 items-start self-stretch shrink-0 flex-nowrap bg-[#0b111e] rounded-xl border-solid border border-[#1d283a] relative z-[690]">
                 <div class="flex w-full pt-0 pr-0 pb-0.5 pl-0 flex-col items-start shrink-0 flex-nowrap relative z-[691]">
