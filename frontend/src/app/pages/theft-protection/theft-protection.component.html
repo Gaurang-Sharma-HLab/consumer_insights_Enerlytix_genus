@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Theft Protection Analysis">
   <!-- Topic 1: Consumers with Consumption Lower Than Expected Pattern -->
-  <app-topic-section title="Consumers with Consumption Lower Than Expected Pattern" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Consumers with Consumption Lower Than Expected Pattern" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="lowerThanExpectedSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Consumer-wise Report</h3>

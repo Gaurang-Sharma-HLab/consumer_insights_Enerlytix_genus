@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="VEE Report">
   <!-- VEE Report – Consumer Estimation & Editing Analysis -->
-  <app-topic-section title="VEE Report – Consumer Estimation & Editing Analysis: Consumers with Regular Estimation & Editing (Descending Order)" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="VEE Report – Consumer Estimation & Editing Analysis: Consumers with Regular Estimation & Editing (Descending Order)" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="veeSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Report Filters</h3>

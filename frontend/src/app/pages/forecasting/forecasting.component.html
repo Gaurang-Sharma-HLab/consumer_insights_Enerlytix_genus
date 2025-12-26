@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Forecasting">
   <!-- Topic 1: Load Forecasting Report -->
-  <app-topic-section title="Load Forecasting Report: Load Forecasting & Consumer Usage Behavior Categorization" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Load Forecasting Report: Load Forecasting & Consumer Usage Behavior Categorization" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="loadForecastSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Load Forecast Summary – By Consumer Category</h3>

@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Energy Audit">
   <!-- Topic 1: Feeder Loss Report – T&D & AT&C Loss Analysis -->
-  <app-topic-section title="Feeder Loss Report – T&D & AT&C Loss Analysis" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Feeder Loss Report – T&D & AT&C Loss Analysis" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="feederLossSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Feeder-wise T&D and AT&C Loss Report</h3>

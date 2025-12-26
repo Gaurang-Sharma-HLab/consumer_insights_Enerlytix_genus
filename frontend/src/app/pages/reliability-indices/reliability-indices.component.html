@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Reliability Indices">
   <!-- Reliability Indices Tracking & Analysis Report -->
-  <app-topic-section title="Reliability Indices Tracking & Analysis Report: SAIFI & SAIDI Monitoring and Improvement Tracking" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Reliability Indices Tracking & Analysis Report: SAIFI & SAIDI Monitoring and Improvement Tracking" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="reliabilityIndicesSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Measurement Methodology</h3>

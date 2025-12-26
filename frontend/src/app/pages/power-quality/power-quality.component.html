@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Power Quality">
   <!-- Topic 1: Outage Monitoring & Analysis Report -->
-  <app-topic-section title="Outage Monitoring & Analysis Report: Consumer-Level Frequent Outage Monitoring & Forecasting" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Outage Monitoring & Analysis Report: Consumer-Level Frequent Outage Monitoring & Forecasting" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="outageSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Outage Interval Definitions (Configurable)</h3>

@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Consumer Data Analysis">
   <!-- Topic 1: Abnormal Consumption Pattern -->
-  <app-topic-section title="Abnormal Consumption Pattern" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Abnormal Consumption Pattern" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <app-summary-tiles [data]="abnormalConsumptionSummary"></app-summary-tiles>
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 High Consumption Cases</h3>

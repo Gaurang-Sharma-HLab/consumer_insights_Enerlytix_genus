@@ -1,6 +1,6 @@
 <app-base-page-layout pageTitle="Consumer Grievance">
   <!-- Topic 1: Consumer Complaints Analysis Report -->
-  <app-topic-section title="Consumer Complaints Analysis Report - Comparative Analysis of Consumer Complaints – Before vs After Smart Meter Installation" [topicNumber]="1" [defaultOpen]="true" [isOpen]="true" (opened)="onTopicSectionOpened($event)">
+  <app-topic-section title="Consumer Complaints Analysis Report - Comparative Analysis of Consumer Complaints – Before vs After Smart Meter Installation" [topicNumber]="1" (opened)="onTopicSectionOpened($event)">
     <div class="space-y-4">
       <h3 class="text-md font-semibold" [style.color]="'var(--text-primary)'">1.1 Executive Summary</h3>
       <app-data-table [data]="getComplaintComparisonSummaryWithIds()" [columns]="complaintComparisonColumns"></app-data-table>
