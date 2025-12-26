@@ -28,6 +28,6 @@ export class SidebarComponent implements OnInit {
   }
 
   getLogoPath(): string {
-    return this.currentTheme === 'dark' ? 'logo_dark.png' : 'logo_light.png';
+    return this.currentTheme === 'dark' ? 'assets/images/logo_dark.png' : 'assets/images/logo_light.png';
   }
 }
