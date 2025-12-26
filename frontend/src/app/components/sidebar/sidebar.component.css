@@ -24,3 +24,18 @@
   transition: width 0.3s ease-in-out;
 }
 
+/* Collapsed state styles */
+.sidebar-background {
+  overflow: hidden;
+}
+
+/* Ensure icons are visible in collapsed state */
+.nav-link {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Tooltip for collapsed icons (optional - can be added later) */
+.nav-item {
+  position: relative;
+}
+
